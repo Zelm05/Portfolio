@@ -1001,15 +1001,35 @@ body.nav-hide-mode .side-nav.nav-hidden {
     width: 40px;
     height: 40px;
     right: 14px;
-    top: 64px;
+    top: 72px;
     font-size: 1.1rem;
   }
   .fortune-popup {
     right: 10px;
     left: 10px;
-    top: 112px;
+    top: 120px;
     width: auto;
     max-height: 70vh;
+  }
+
+  /* 手机版游戏卡片两列布局 */
+  .game-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .game-card {
+    padding: 14px 10px;
+  }
+  .game-icon {
+    font-size: 28px;
+  }
+  .game-card h3 {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  .game-play {
+    font-size: 12px;
+    padding: 6px 12px;
   }
 
   /* 手机版弹窗内边距优化 */
