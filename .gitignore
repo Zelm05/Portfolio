@@ -1,0 +1,8 @@
+# 站点根目录 .gitignore（纯前端静态站，部署到 GitHub Pages / Cloudflare Pages）
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log
