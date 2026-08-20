@@ -1537,6 +1537,7 @@ function renderGames() {
     if (!settings.games[g.id]) return;
     const c = document.createElement('div');
     c.className = 'game-card';
+    c.dataset.gameId = g.id;
     c.innerHTML = `<div class="game-icon">${g.icon}</div><h3>${escapeHtml(gameNameMap[g.id] || g.name)}</h3><button class="game-play" type="button">▶ ${d.gameStart || '开始'}</button>`;
     c.querySelector('.game-play').addEventListener('click', () => openGame(g));
     gameGrid.appendChild(c);

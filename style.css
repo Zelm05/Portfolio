@@ -1031,6 +1031,12 @@ body.nav-hide-mode .side-nav.nav-hidden {
     font-size: 12px;
     padding: 6px 12px;
   }
+  /* 手机端只保留记忆翻牌和扫雷，隐藏其他游戏 */
+  .game-card[data-game-id="snake"],
+  .game-card[data-game-id="tetris"],
+  .game-card[data-game-id="runner"] {
+    display: none !important;
+  }
 
   /* 手机版弹窗内边距优化 */
   .modal {
