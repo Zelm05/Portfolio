@@ -1270,6 +1270,31 @@ function updateFullscreenBtn() {
 }
 document.addEventListener('fullscreenchange', updateFullscreenBtn);
 if (navSettingsBtn) navSettingsBtn.addEventListener('click', openSettings);
+
+/* 手机版汉堡菜单 */
+const navToggle = document.getElementById('navToggle');
+const navItems = document.getElementById('navItems');
+if (navToggle && navItems) {
+  navToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navItems.classList.toggle('open');
+    navToggle.classList.toggle('active');
+  });
+  // 点击导航项后自动收起
+  navItems.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      navItems.classList.remove('open');
+      navToggle.classList.remove('active');
+    });
+  });
+  // 点击页面其他区域收起
+  document.addEventListener('click', (e) => {
+    if (!document.getElementById('sideNav').contains(e.target)) {
+      navItems.classList.remove('open');
+      navToggle.classList.remove('active');
+    }
+  });
+}
 if (settingsClose) settingsClose.addEventListener('click', closeSettings);
 if (settingsFullscreenBtn) settingsFullscreenBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePageFullscreen(); });
 if (settingsOverlay) settingsOverlay.addEventListener('click', (e) => { if (e.target === settingsOverlay) closeSettings(); });

@@ -59,20 +59,25 @@
 
   <!-- 左侧导航栏 -->
   <nav class="side-nav" id="sideNav">
-    <a class="nav-brand" href="#" data-target="top">◉ Zelm</a>
-    <button class="nav-item" data-target="home" data-i18n="navHome">首页</button>
-    <button class="nav-item" data-target="about" data-i18n="aboutTitle">关于我</button>
-    <button class="nav-item" data-target="projects" data-i18n="projectsTitle">项目作品</button>
-    <button class="nav-item" data-target="blog" data-i18n="blogTitle">技术博客</button>
-    <button class="nav-item" data-target="resume" data-i18n="resumeTitle">简历</button>
-    <button class="nav-item" data-target="certificates" data-i18n="certTitle">证书</button>
-    <div class="nav-divider"></div>
-    <button class="nav-item" data-target="quickLinks" data-i18n="navQuick">快捷网页</button>
-    <button class="nav-item" data-target="resources" data-i18n="navResources">资源下载</button>
-    <button class="nav-item" data-target="games" data-i18n="navGames">小游戏</button>
-    <button class="nav-item" data-target="contacts" data-i18n="contactsTitle">联系方式</button>
-    <div class="nav-divider"></div>
-    <button class="nav-item" id="navSettingsBtn" data-i18n="settingsTitle">设置</button>
+    <div class="nav-header">
+      <a class="nav-brand" href="#" data-target="top">◉ Zelm</a>
+      <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+    </div>
+    <div class="nav-items" id="navItems">
+      <button class="nav-item" data-target="home" data-i18n="navHome">首页</button>
+      <button class="nav-item" data-target="about" data-i18n="aboutTitle">关于我</button>
+      <button class="nav-item" data-target="projects" data-i18n="projectsTitle">项目作品</button>
+      <button class="nav-item" data-target="blog" data-i18n="blogTitle">技术博客</button>
+      <button class="nav-item" data-target="resume" data-i18n="resumeTitle">简历</button>
+      <button class="nav-item" data-target="certificates" data-i18n="certTitle">证书</button>
+      <div class="nav-divider"></div>
+      <button class="nav-item" data-target="quickLinks" data-i18n="navQuick">快捷网页</button>
+      <button class="nav-item" data-target="resources" data-i18n="navResources">资源下载</button>
+      <button class="nav-item" data-target="games" data-i18n="navGames">小游戏</button>
+      <button class="nav-item" data-target="contacts" data-i18n="contactsTitle">联系方式</button>
+      <div class="nav-divider"></div>
+      <button class="nav-item" id="navSettingsBtn" data-i18n="settingsTitle">设置</button>
+    </div>
   </nav>
 
   <header class="site-header">
