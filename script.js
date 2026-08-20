@@ -1131,7 +1131,12 @@ function setMusicVolume(val) {
 function toggleMusicPopup() {
   if (!musicPopup) return;
   musicPopup.hidden = !musicPopup.hidden;
-  if (!musicPopup.hidden) renderMusicList();
+  if (!musicPopup.hidden) {
+    renderMusicList();
+    // 打开音乐弹窗时关闭今日运势弹窗
+    const fortunePopup = document.getElementById('fortunePopup');
+    if (fortunePopup) fortunePopup.hidden = true;
+  }
 }
 
 // 事件绑定
@@ -2543,6 +2548,9 @@ renderGames();
   floatBtn.addEventListener('click', () => {
     randomFortune();
     popup.hidden = false;
+    // 打开今日运势弹窗时关闭音乐弹窗
+    const musicPopup = document.getElementById('musicPopup');
+    if (musicPopup) musicPopup.hidden = true;
   });
 
   closeBtn.addEventListener('click', () => {
