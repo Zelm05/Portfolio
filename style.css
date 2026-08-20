@@ -1070,7 +1070,7 @@ body.nav-hide-mode .side-nav.nav-hidden {
 
   /* 分隔线 */
   .gate-divider {
-    margin: 10px 0 !important;
+    margin: 10px auto !important;
   }
 
   /* 进入按钮缩小 */
