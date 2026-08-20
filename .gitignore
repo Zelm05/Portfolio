@@ -6,3 +6,6 @@ Thumbs.db
 
 # 日志
 *.log
+
+# 静态资源（用户自行更新）
+assets/
