@@ -1005,6 +1005,7 @@ const musicVolumeIcon = document.getElementById('musicVolumeIcon');
 
 let currentMusicIndex = -1;
 let isPlaying = false;
+let isLoading = false;
 let lastVolume = 0.7;
 
 audio.volume = settings.volume || 0.7;
@@ -1056,19 +1057,44 @@ function playMusic(index) {
   if (index < 0 || index >= MUSIC_LIST.length) return;
   currentMusicIndex = index;
   const m = MUSIC_LIST[index];
+  isLoading = true;
+  updateNowPlaying();
+  updateDiscStyle();
+  renderMusicList();
   audio.src = m.url;
+  audio.load();
   audio.play().then(() => {
     isPlaying = true;
+    isLoading = false;
     updateNowPlaying();
     updateDiscStyle();
     renderMusicList();
   }).catch(() => {
     isPlaying = false;
+    isLoading = false;
     updateNowPlaying();
     updateDiscStyle();
     renderMusicList();
   });
 }
+
+// 音频加载事件
+audio.addEventListener('waiting', () => {
+  isLoading = true;
+  updateNowPlaying();
+  updateDiscStyle();
+});
+audio.addEventListener('canplay', () => {
+  isLoading = false;
+  updateNowPlaying();
+  updateDiscStyle();
+});
+audio.addEventListener('error', () => {
+  isLoading = false;
+  isPlaying = false;
+  updateNowPlaying();
+  updateDiscStyle();
+});
 
 function togglePlay() {
   if (currentMusicIndex === -1) {
@@ -1103,15 +1129,17 @@ function updateNowPlaying() {
     if (musicNpArtist) musicNpArtist.textContent = '-';
     if (musicPlayBtn) musicPlayBtn.textContent = '▶';
     disc.classList.remove('playing');
+    disc.classList.remove('loading');
     if (musicNpDisc) musicNpDisc.classList.remove('playing');
     return;
   }
   const m = MUSIC_LIST[currentMusicIndex];
-  if (musicNpTitle) musicNpTitle.textContent = m.name;
-  if (musicNpArtist) musicNpArtist.textContent = m.artist;
-  if (musicPlayBtn) musicPlayBtn.textContent = isPlaying ? '⏸' : '▶';
-  disc.classList.toggle('playing', isPlaying);
-  if (musicNpDisc) musicNpDisc.classList.toggle('playing', isPlaying);
+  if (musicNpTitle) musicNpTitle.textContent = isLoading ? '加载中...' : m.name;
+  if (musicNpArtist) musicNpArtist.textContent = isLoading ? '正在缓冲' : m.artist;
+  if (musicPlayBtn) musicPlayBtn.textContent = isLoading ? '⏳' : (isPlaying ? '⏸' : '▶');
+  disc.classList.toggle('playing', isPlaying && !isLoading);
+  disc.classList.toggle('loading', isLoading);
+  if (musicNpDisc) musicNpDisc.classList.toggle('playing', isPlaying && !isLoading);
 }
 
 function setMusicVolume(val) {
