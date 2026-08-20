@@ -1074,7 +1074,14 @@ body.nav-hide-mode .side-nav.nav-hidden {
 
   /* 分隔线 */
   .gate-divider {
+    display: block !important;
+    width: 60% !important;
+    max-width: 200px !important;
+    height: 1px !important;
     margin: 10px auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    float: none !important;
   }
 
   /* 进入按钮缩小 */
