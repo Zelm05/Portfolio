@@ -977,8 +977,8 @@ resForm.addEventListener('submit', (e) => {
 
 // ===== 本地音乐播放器 =====
 const MUSIC_LIST = [
-  { name: '听雨的声音', artist: '瑞恩船长,雪球', url: 'assets/music/瑞恩船长,雪球 - 听雨的声音.flac', discBg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' },
-  { name: '手牵手', artist: '王力宏,陶喆,蔡琴', url: 'assets/music/王力宏,陶喆,蔡琴 - 手牵手.flac', discBg: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)' },
+  { name: '听雨的声音', artist: '瑞恩船长,雪球', url: 'assets/music/瑞恩船长,雪球 - 听雨的声音.mp3', discBg: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' },
+  { name: '手牵手', artist: '王力宏,陶喆,蔡琴', url: 'assets/music/王力宏,陶喆,蔡琴 - 手牵手.mp3', discBg: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)' },
   { name: '爱错', artist: '王力宏', url: 'assets/music/王力宏 - 爱错.mp3', discBg: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)' },
   { name: '手写的从前', artist: '赵乃吉', url: 'assets/music/赵乃吉 - 手写的从前.mp3', discBg: 'linear-gradient(135deg, #a8e063 0%, #56ab2f 100%)' },
   { name: '我们的歌', artist: '王力宏', url: 'assets/music/王力宏 - 我们的歌.mp3', discBg: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)' }
