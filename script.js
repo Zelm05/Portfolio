@@ -2410,6 +2410,7 @@ function renderGameToggles() {
   GAMES.forEach(g => {
     const row = document.createElement('label');
     row.className = 'switch-row';
+    row.dataset.gameId = g.id;
     row.innerHTML = `<span>${g.icon} ${escapeHtml(g.name)}</span><input type="checkbox" class="switch-input game-toggle" data-game="${g.id}" ${settings.games[g.id] ? 'checked' : ''}><span class="switch"></span>`;
     wrap.appendChild(row);
   });

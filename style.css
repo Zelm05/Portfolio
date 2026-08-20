@@ -1053,6 +1053,12 @@ body.nav-hide-mode .side-nav.nav-hidden {
   .game-card[data-game-id="runner"] {
     display: none !important;
   }
+  /* 设置面板中也隐藏其他三个游戏的开关 */
+  #gameToggles .switch-row[data-game-id="snake"],
+  #gameToggles .switch-row[data-game-id="tetris"],
+  #gameToggles .switch-row[data-game-id="runner"] {
+    display: none !important;
+  }
 
   /* ===== 手机端欢迎页优化 ===== */
   .gate-card {
