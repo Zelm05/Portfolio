@@ -1282,9 +1282,12 @@ body.nav-hide-mode .side-nav.nav-hidden {
     border-radius: 16px;
   }
   .quick-pagination .page-jump-btn {
+    width: auto !important;
+    min-width: auto !important;
     padding: 0 10px !important;
     font-size: 0.72rem !important;
     height: 32px !important;
+    border-radius: 16px !important;
   }
 }
 
@@ -2827,8 +2830,11 @@ html[data-theme="light"] .gate-theme-btn:hover {
   opacity: 0.6;
 }
 .page-jump-btn {
-  padding: 0 16px !important;
+  width: auto !important;
+  min-width: auto !important;
+  padding: 0 14px !important;
   font-size: 0.8rem !important;
+  border-radius: 18px !important;
 }
 /* 隐藏number输入框的上下箭头 */
 .page-jump input::-webkit-outer-spin-button,
