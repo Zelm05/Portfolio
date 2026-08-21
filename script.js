@@ -1,6 +1,7 @@
 /* ===== 设置与国际化 ===== */
 const I18N = {
   zh: {
+    navHome: '首页',
     subtitle: '信息资源库 · 收集、整理与分享',
     introTitle: 'Zelm 的信息资源库',
     introText: '这里收藏着星光般的数字资源——常用网站、设计、开发、阅读、工具与灵感，等待你一一拾起。快捷网页帮你一键直达，资源下载沉淀好物，小游戏陪你放松。',
@@ -66,12 +67,23 @@ const I18N = {
     settingsTitle: '设置',
     back: '返回',
     musicList: '音乐列表',
+    musicConfirmTitle: '选择一首歌曲',
+    musicConfirmDesc: '点击歌曲即可播放，或选择暂不播放',
+    musicConfirmNo: '暂不播放',
+    musicLoadingHint: '⏳ 音乐加载可能需要一点时间，请稍候...',
+    qqNumber: 'QQ号',
+    douyinAccount: '抖音号',
+    scanToAdd: '扫码添加好友',
+    scanToFollow: '扫码关注',
+    musicNotPlaying: '未播放',
+    musicLoading: '加载中...',
+    musicBuffering: '正在缓冲',
+    musicPrev: '上一首',
+    musicPlayPause: '播放/暂停',
+    musicNext: '下一首',
     groupLang: '语言',
     groupMusic: '音乐',
-    autoPlay: '自动播放音乐',
-    defaultVolume: '默认音量',
-    groupMusic: '音乐',
-    autoPlay: '自动播放',
+    autoPlay: '进入时弹出选歌',
     defaultVolume: '默认音量',
     sizeSmall: '小',
     sizeMedium: '中',
@@ -107,6 +119,73 @@ const I18N = {
     gameScore: '得分',
     gameBest: '最高',
     gameGameOver: '游戏结束',
+    msSelectDifficulty: '选择难度',
+    msEasy: '简单',
+    msMedium: '中等',
+    msHard: '困难',
+    msLeftClick: '左键翻开',
+    msRightClick: '右键标记',
+    msRemaining: '剩余',
+    msReselect: '重新选择难度',
+    msGameOver: '💥 踩到地雷了！游戏结束',
+    memSelectDifficulty: '选择难度',
+    memEasy: '简单',
+    memHard: '困难',
+    memMoves: '步数',
+    memWildCard: '点击⭐万能牌直接消除',
+    memReselect: '重新选择难度',
+    memAllMatched: '🎉 全部配对成功！用了 ',
+    memMovesUnit: ' 步',
+    snakeControls: '方向键 / WASD 控制',
+    snakeScore: '得分',
+    snakeStart: '开始游戏',
+    snakeClickStart: '点击开始游戏',
+    snakeControlDir: '方向键 / WASD 控制方向',
+    snakeGameOver: '💀 游戏结束，得分 ',
+    snakeClickRestart: ' · 点击重新开始',
+    snakeRestart: '重新开始',
+    tetrisSelectMode: '选择模式',
+    tetrisCasual: '休闲',
+    tetrisNormal: '普通',
+    tetrisSpeed: '极速',
+    tetrisSlowDrop: '慢速下落',
+    tetrisStandardSpeed: '标准速度',
+    tetrisFastDrop: '快速下落',
+    tetrisControls: '← → 移动 · ↑ 旋转 · ↓ 软降 · 空格 硬降',
+    tetrisMode: '模式',
+    tetrisReselect: '重新选择模式',
+    runnerControls: '空格/↑ 跳跃 · ↓/Ctrl 下蹲',
+    runnerCoins: '金币',
+    runnerBest: '最高',
+    runnerGameOver: '💀 游戏结束',
+    runnerClickRestart: '点击按钮重新开始',
+    runnerGameOverMsg: '💀 游戏结束！金币 ',
+    runnerScoreMsg: ' · 得分 ',
+    mbtiTitle: '🧠 ENFJ · 主人公',
+    mbtiSubtitle: '主人公 / 教育家',
+    mbtiDesc: 'ENFJ 是 MBTI 十六型人格中的一种，被称为"主人公"或"教育家"。他们热情、有感染力、善于激励他人，是天生的领导者和沟通者。',
+    mbtiCoreTraits: '✨ 核心特点',
+    mbtiTraitE: '外向（E）：善于社交，精力来源于与人互动',
+    mbtiTraitN: '直觉（N）：关注未来可能性，富有想象力',
+    mbtiTraitF: '情感（F）：重视和谐，决策基于价值观',
+    mbtiTraitJ: '判断（J）：有计划、有条理，喜欢确定性',
+    mbtiStrengths: '💪 优势',
+    mbtiStrength1: '富有感染力和领导力，能激励团队',
+    mbtiStrength2: '善于沟通和共情，理解他人需求',
+    mbtiStrength3: '热情乐观，积极推动事情发展',
+    mbtiStrength4: '有责任心，值得信赖',
+    mbtiWeaknesses: '⚠️ 需注意',
+    mbtiWeakness1: '可能过于理想化，对他人期望过高',
+    mbtiWeakness2: '容易过度承担，忽视自己需求',
+    mbtiWeakness3: '对批评敏感，需要学会接受反馈',
+    mbtiWeakness4: '有时过于强势，需学会倾听',
+    mbtiCareers: '💼 适合职业',
+    mbtiCareersDesc: '教师、人力资源、心理咨询、公关、市场营销、项目经理、社会工作者、政治家、培训师',
+    mbtiRelationship: '🤝 相处建议',
+    mbtiRelationshipDesc: '与 ENFJ 相处时，真诚表达你的想法和感受，他们重视深度交流。认可他们的努力和贡献，给予积极反馈。同时也要提醒他们关注自己的需求，不要过度付出。',
+    mbtiFamous: '知名人物：奥巴马 · 奥普拉 · 马丁·路德·金 · 本·阿弗莱克',
+    runnerTitle: '🐱 猫跑酷',
+    runnerHint: '收集金币，躲避水晶和幽灵！',
     fortuneTitle: '今日运势',
     fortuneOverall: '综合运势',
     fortuneLove: '爱情',
@@ -157,7 +236,43 @@ const I18N = {
       '阿里巴巴推出的大语言模型。': 'LLM developed by Alibaba.',
       '键盘打字练习工具，边打字边背单词。': 'Keyboard typing practice tool. Learn vocabulary while typing.',
       '重庆科技大学校园统一身份认证登录入口。': 'CQUPT campus single sign-on portal.',
-      '清华大学推出的在线课堂平台。': 'Online classroom platform developed by Tsinghua University.'
+      '清华大学推出的在线课堂平台。': 'Online classroom platform developed by Tsinghua University.',
+      'AI 驱动的实时答案搜索引擎。': 'AI-powered real-time answer search engine.',
+      'Anthropic 出品，长文写作与代码能力突出。': 'By Anthropic. Excels at long-form writing and coding.',
+      'Google 的多模态 AI 助手。': 'Google\'s multimodal AI assistant.',
+      'Google 邮箱服务。': 'Google email service.',
+      'OpenAI 的旗舰 AI 对话助手。': 'OpenAI\'s flagship AI chat assistant.',
+      '阿里云推出的大语言模型。': 'LLM developed by Alibaba Cloud.',
+      '编程入门教程，涵盖前端、后端、数据库等多种技术。': 'Programming tutorials covering frontend, backend, database and more.',
+      '代码托管与开源协作平台。': 'Code hosting and open source collaboration platform.',
+      '导航与生活服务地图。': 'Navigation and lifestyle service maps.',
+      '抖音短视频官方网页版，海量短视频内容。': 'Official Douyin short video web version. Massive short video content.',
+      '高校常用在线学习平台，课程签到与作业提交。': 'Common online learning platform for universities. Course check-in and assignment submission.',
+      '国产开源大模型，推理能力强且免费。': 'Domestic open source LLM. Strong reasoning ability and free.',
+      '国内知名IT技能学习平台，编程视频教程丰富。': 'Well-known domestic IT skill learning platform. Rich programming video tutorials.',
+      '键盘打字练习工具，支持单词、代码等多种练习模式。': 'Keyboard typing practice tool. Supports word, code and other practice modes.',
+      '教育部学历查询官方网站，学籍学历认证与查询。': 'Official website for education qualification query. Student status and degree certification.',
+      '开发者技术社区，前端、后端、移动端技术文章分享。': 'Developer tech community. Frontend, backend, mobile tech articles sharing.',
+      '年轻人学习、娱乐与创作社区。': 'Community for young people to learn, entertain and create.',
+      '清华大学推出的精品慕课平台，高校课程在线学习。': 'Premium MOOC platform by Tsinghua University. Online university courses.',
+      '清华大学推出的智慧教学工具，在线课堂与作业提交。': 'Smart teaching tool by Tsinghua University. Online classroom and assignment submission.',
+      '全球搜索引擎，学术与开发检索常用。': 'Global search engine. Commonly used for academic and development research.',
+      '全球最大视频平台，教程与纪录内容丰富。': 'World\'s largest video platform. Rich tutorials and documentary content.',
+      '设计、办公、编程等软件视频教程自学平台。': 'Self-learning platform for design, office, programming software video tutorials.',
+      '实时资讯与社交平台。': 'Real-time news and social platform.',
+      '腾讯QQ官方网站，可下载客户端或使用网页版聊天。': 'Official Tencent QQ website. Download client or use web version to chat.',
+      '腾讯在线教育平台，职业培训与考证课程丰富。': 'Tencent online education platform. Rich vocational training and certification courses.',
+      '网易旗下音乐播放平台，海量曲库与社区评论。': 'NetEase music streaming platform. Huge music library and community comments.',
+      '网易旗下在线学习平台，职场技能与兴趣课程。': 'NetEase online learning platform. Career skills and interest courses.',
+      '网易与高教社推出的慕课平台，国内名校课程免费学。': 'MOOC platform by NetEase and Higher Education Press. Free courses from top domestic universities.',
+      '问答与深度内容社区。': 'Q&A and in-depth content community.',
+      '中国铁路官方购票平台。': 'Official China Railway ticket booking platform.',
+      '中国知网，学术论文检索与下载，毕业论文查重必备。': 'CNKI. Academic paper search and download. Essential for thesis plagiarism check.',
+      '中文技术博客社区，编程问题解答与技术分享。': 'Chinese tech blog community. Programming problem solving and tech sharing.',
+      '中文社交媒体与实时热点广场。': 'Chinese social media and real-time hot topics plaza.',
+      '重庆科技大学统一身份认证平台，校内系统单点登录。': 'CQUPT unified identity authentication platform. Single sign-on for campus systems.',
+      '自营电商，3C 数码与次日达体验好。': 'Self-operated e-commerce. Great experience for 3C digital products and next-day delivery.',
+      '自由百科全书。': 'Free encyclopedia.'
     },
     projectsTitle: '项目作品',
     projectsSub: '实战项目展示，含演示地址与源码入口。',
@@ -219,6 +334,7 @@ const I18N = {
     aboutDisclaimer: '免责说明'
   },
   en: {
+    navHome: 'Home',
     subtitle: 'Resource Library · Collect, Organize & Share',
     introTitle: "Zelm's Resource Library",
     introText: "A little box of digital starlight — handy sites, design, dev, reading, tools and inspiration. Quick links get you there in one tap, downloads keep the good stuff, and mini-games keep you company.",
@@ -284,9 +400,23 @@ const I18N = {
     settingsTitle: 'Settings',
     back: 'Back',
     musicList: 'Music List',
+    musicConfirmTitle: 'Select a Song',
+    musicConfirmDesc: 'Click a song to play, or choose not to play',
+    musicConfirmNo: 'Not Now',
+    musicLoadingHint: '⏳ Music may take a moment to load, please wait...',
+    qqNumber: 'QQ Number',
+    douyinAccount: 'Douyin ID',
+    scanToAdd: 'Scan to add friend',
+    scanToFollow: 'Scan to follow',
+    musicNotPlaying: 'Not Playing',
+    musicLoading: 'Loading...',
+    musicBuffering: 'Buffering',
+    musicPrev: 'Previous',
+    musicPlayPause: 'Play/Pause',
+    musicNext: 'Next',
     groupLang: 'Language',
     groupMusic: 'Music',
-    autoPlay: 'Autoplay music',
+    autoPlay: 'Show song picker on entry',
     defaultVolume: 'Default volume',
     sizeSmall: 'Small',
     sizeMedium: 'Medium',
@@ -322,6 +452,73 @@ const I18N = {
     gameScore: 'Score',
     gameBest: 'Best',
     gameGameOver: 'Game Over',
+    msSelectDifficulty: 'Select Difficulty',
+    msEasy: 'Easy',
+    msMedium: 'Medium',
+    msHard: 'Hard',
+    msLeftClick: 'Left click to reveal',
+    msRightClick: 'Right click to flag',
+    msRemaining: 'Remaining',
+    msReselect: 'Reselect Difficulty',
+    msGameOver: '💥 Mine hit! Game Over',
+    memSelectDifficulty: 'Select Difficulty',
+    memEasy: 'Easy',
+    memHard: 'Hard',
+    memMoves: 'Moves',
+    memWildCard: 'Click ⭐ wild card to clear directly',
+    memReselect: 'Reselect Difficulty',
+    memAllMatched: '🎉 All matched! Used ',
+    memMovesUnit: ' moves',
+    snakeControls: 'Arrow keys / WASD to control',
+    snakeScore: 'Score',
+    snakeStart: 'Start Game',
+    snakeClickStart: 'Click to Start',
+    snakeControlDir: 'Arrow keys / WASD to control direction',
+    snakeGameOver: '💀 Game Over, Score ',
+    snakeClickRestart: ' · Click to restart',
+    snakeRestart: 'Restart',
+    tetrisSelectMode: 'Select Mode',
+    tetrisCasual: 'Casual',
+    tetrisNormal: 'Normal',
+    tetrisSpeed: 'Speed',
+    tetrisSlowDrop: 'Slow drop',
+    tetrisStandardSpeed: 'Standard speed',
+    tetrisFastDrop: 'Fast drop',
+    tetrisControls: '← → Move · ↑ Rotate · ↓ Soft drop · Space Hard drop',
+    tetrisMode: 'Mode',
+    tetrisReselect: 'Reselect Mode',
+    runnerControls: 'Space/↑ Jump · ↓/Ctrl Duck',
+    runnerCoins: 'Coins',
+    runnerBest: 'Best',
+    runnerGameOver: '💀 Game Over',
+    runnerClickRestart: 'Click button to restart',
+    runnerGameOverMsg: '💀 Game Over! Coins ',
+    runnerScoreMsg: ' · Score ',
+    mbtiTitle: '🧠 ENFJ · Protagonist',
+    mbtiSubtitle: 'Protagonist / Educator',
+    mbtiDesc: 'ENFJ is one of the 16 MBTI personality types, known as the "Protagonist" or "Educator". They are enthusiastic, charismatic, and skilled at motivating others, making them natural leaders and communicators.',
+    mbtiCoreTraits: '✨ Core Traits',
+    mbtiTraitE: 'Extraversion (E): Sociable, energy from interacting with others',
+    mbtiTraitN: 'Intuition (N): Focus on future possibilities, imaginative',
+    mbtiTraitF: 'Feeling (F): Value harmony, decisions based on values',
+    mbtiTraitJ: 'Judging (J): Organized, structured, prefer certainty',
+    mbtiStrengths: '💪 Strengths',
+    mbtiStrength1: 'Charismatic and leadership, can motivate teams',
+    mbtiStrength2: 'Good at communication and empathy, understand others needs',
+    mbtiStrength3: 'Enthusiastic and optimistic, actively drive things forward',
+    mbtiStrength4: 'Responsible and trustworthy',
+    mbtiWeaknesses: '⚠️ Watch Out',
+    mbtiWeakness1: 'May be too idealistic, expect too much from others',
+    mbtiWeakness2: 'Tend to overcommit, neglect own needs',
+    mbtiWeakness3: 'Sensitive to criticism, need to learn to accept feedback',
+    mbtiWeakness4: 'Sometimes too assertive, need to learn to listen',
+    mbtiCareers: '💼 Suitable Careers',
+    mbtiCareersDesc: 'Teacher, HR,心理咨询, PR, Marketing, Project Manager, Social Worker, Politician, Trainer',
+    mbtiRelationship: '🤝 Relationship Advice',
+    mbtiRelationshipDesc: 'When getting along with ENFJ, sincerely express your thoughts and feelings, they value deep communication. Recognize their efforts and contributions, give positive feedback. Also remind them to focus on their own needs and not overgive.',
+    mbtiFamous: 'Famous: Obama · Oprah · Martin Luther King Jr. · Ben Affleck',
+    runnerTitle: '🐱 Cat Runner',
+    runnerHint: 'Collect coins, avoid crystals and ghosts!',
     fortuneTitle: 'Today\'s Fortune',
     fortuneOverall: 'Overall',
     fortuneLove: 'Love',
@@ -609,9 +806,9 @@ function renderQuick() {
   const startIdx = (curPage - 1) * pageSize;
   const pageList = list.slice(startIdx, startIdx + pageSize);
   pageList.forEach(q => {
-    const d = I18N[settings.lang] || I18N.zh;
-    const nameMap = d.quickLinkNames || {};
-    const descMap = d.quickLinkDescs || {};
+    const isEn = settings.lang === 'en';
+    const nameMap = isEn ? (I18N.zh.quickLinkNames || {}) : {};
+    const descMap = isEn ? (I18N.zh.quickLinkDescs || {}) : {};
     const displayName = nameMap[q.name] || q.name;
     const displayDesc = descMap[q.desc] || q.desc;
     const card = document.createElement('div');
@@ -745,9 +942,9 @@ const qdMeta = document.getElementById('qdMeta');
 const qdVisit = document.getElementById('qdVisit');
 
 function openQuickDetail(q) {
-  const d = I18N[settings.lang] || I18N.zh;
-  const nameMap = d.quickLinkNames || {};
-  const descMap = d.quickLinkDescs || {};
+  const isEn = settings.lang === 'en';
+  const nameMap = isEn ? (I18N.zh.quickLinkNames || {}) : {};
+  const descMap = isEn ? (I18N.zh.quickLinkDescs || {}) : {};
   const displayName = nameMap[q.name] || q.name;
   const displayDesc = descMap[q.desc] || q.desc;
   if (qdIcon) qdIcon.innerHTML = q.icon || '🌐';
@@ -1166,8 +1363,9 @@ function playNext() {
 }
 
 function updateNowPlaying() {
+  const t = I18N[settings.lang] || I18N.zh;
   if (currentMusicIndex === -1) {
-    if (musicNpTitle) musicNpTitle.textContent = '未播放';
+    if (musicNpTitle) musicNpTitle.textContent = t.musicNotPlaying;
     if (musicNpArtist) musicNpArtist.textContent = '-';
     if (musicPlayBtn) musicPlayBtn.textContent = '▶';
     disc.classList.remove('playing');
@@ -1176,8 +1374,8 @@ function updateNowPlaying() {
     return;
   }
   const m = MUSIC_LIST[currentMusicIndex];
-  if (musicNpTitle) musicNpTitle.textContent = isLoading ? '加载中...' : m.name;
-  if (musicNpArtist) musicNpArtist.textContent = isLoading ? '正在缓冲' : m.artist;
+  if (musicNpTitle) musicNpTitle.textContent = isLoading ? t.musicLoading : m.name;
+  if (musicNpArtist) musicNpArtist.textContent = isLoading ? t.musicBuffering : m.artist;
   if (musicPlayBtn) musicPlayBtn.textContent = isLoading ? '⏳' : (isPlaying ? '⏸' : '▶');
   disc.classList.toggle('playing', isPlaying && !isLoading);
   disc.classList.toggle('loading', isLoading);
@@ -1260,32 +1458,59 @@ function preloadAllMusic() {
   });
 }
 
-// 尝试自动播放（浏览器可能阻止，需要用户交互）
-let autoPlayAttempted = false;
-function tryAutoPlay() {
-  if (autoPlayAttempted) return;
-  autoPlayAttempted = true;
-  if (settings.autoPlay && MUSIC_LIST.length > 0) {
-    playMusic(0);
-  }
+// 音乐选择弹窗
+const musicConfirmOverlay = document.getElementById('musicConfirmOverlay');
+const musicConfirmList = document.getElementById('musicConfirmList');
+const musicConfirmNo = document.getElementById('musicConfirmNo');
+
+function renderMusicConfirmList() {
+  if (!musicConfirmList) return;
+  musicConfirmList.innerHTML = MUSIC_LIST.map((m, i) => `
+    <div class="music-confirm-item" data-index="${i}">
+      <div class="music-confirm-item-left">
+        <span class="music-confirm-item-num">${String(i + 1).padStart(2, '0')}</span>
+        <div class="music-confirm-item-info">
+          <span class="music-confirm-item-name">${escapeHtml(m.name)}</span>
+          <span class="music-confirm-item-artist">${escapeHtml(m.artist)}</span>
+        </div>
+      </div>
+      <button class="music-confirm-item-play" type="button">▶</button>
+    </div>
+  `).join('');
+  musicConfirmList.querySelectorAll('.music-confirm-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const idx = parseInt(item.dataset.index);
+      playMusic(idx);
+      hideMusicConfirm();
+    });
+  });
+}
+
+function showMusicConfirm() {
+  if (!musicConfirmOverlay) return;
+  renderMusicConfirmList();
+  musicConfirmOverlay.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+
+function hideMusicConfirm() {
+  if (!musicConfirmOverlay) return;
+  musicConfirmOverlay.hidden = true;
+  document.body.style.overflow = '';
+}
+
+if (musicConfirmNo) {
+  musicConfirmNo.addEventListener('click', hideMusicConfirm);
 }
 
 // 页面加载后预加载所有音乐
 preloadAllMusic();
 
-// 尝试自动播放
+// 显示音乐选择弹窗（替代自动播放）
 if (settings.autoPlay) {
-  tryAutoPlay();
-  // 如果浏览器阻止自动播放，在用户第一次交互时播放
-  const onFirstInteract = () => {
-    tryAutoPlay();
-    document.removeEventListener('click', onFirstInteract);
-    document.removeEventListener('touchstart', onFirstInteract);
-    document.removeEventListener('keydown', onFirstInteract);
-  };
-  document.addEventListener('click', onFirstInteract);
-  document.addEventListener('touchstart', onFirstInteract);
-  document.addEventListener('keydown', onFirstInteract);
+  setTimeout(() => {
+    showMusicConfirm();
+  }, 800);
 }
 
 renderMusicList();
@@ -1301,7 +1526,7 @@ const CONTACTS = [
   { group: 'link', icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="#EA4335"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>', url: 'mailto:yz050930@gmail.com', title: { zh: 'yz050930@gmail.com', en: 'yz050930@gmail.com' } },
   { group: 'link', icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-3.795-.735-.54-1.38-1.32-1.755-1.32-1.755-1.08-.735.085-.72.085-.72 1.2.09 1.83 1.215 1.83 1.215 1.065 1.83 2.79 1.305 3.48.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>', url: 'https://github.com/Zelm05/Portfolio', title: { zh: 'Zelm05/Portfolio', en: 'Zelm05/Portfolio' } },
   { group: 'link', icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>', url: 'https://discord.com/users/zelm_05', title: { zh: 'zelm_05', en: 'zelm_05' } },
-  { group: 'link', icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg>', url: 'https://www.douyin.com/search/Darling_Yu_02', title: { zh: 'Darling_Yu_02', en: 'Darling_Yu_02' } }
+  { group: 'link', icon: '<svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg>', url: 'https://www.douyin.com/search/Darling_Yu_02', title: { zh: 'Darling_Yu_02', en: 'Darling_Yu_02' }, douyin: 'Darling_Yu_02', qrcode: 'assets/douyin-qrcode.png' }
 ];
 
 function bindCopy(btn) {
@@ -1318,23 +1543,27 @@ function bindCopy(btn) {
   });
 }
 function makeContactEl(c) {
+  const t = I18N[settings.lang] || I18N.zh;
   const el = c.group === 'link' ? document.createElement('a') : document.createElement('button');
-  el.className = 'contact-icon-only' + (c.group === 'copy' ? ' copyable' : '') + (c.qq ? ' has-qq-tooltip' : '');
+  el.className = 'contact-icon-only' + (c.group === 'copy' ? ' copyable' : '') + ((c.qq || c.douyin) ? ' has-qq-tooltip' : '');
   el.innerHTML = c.icon;
   el.title = (c.title && c.title[settings.lang]) || (c.title && c.title.zh) || '';
   if (c.group === 'link') {
     el.href = c.url;
     if (!c.url.startsWith('mailto:')) { el.target = '_blank'; el.rel = 'noopener noreferrer'; }
   } else { el.dataset.copy = c.copy; }
-  // QQ特殊tooltip：显示QQ号和二维码
-  if (c.qq) {
+  // QQ/抖音特殊tooltip：显示账号和二维码
+  if (c.qq || c.douyin) {
     const tooltip = document.createElement('div');
     tooltip.className = 'qq-tooltip';
+    const account = c.qq || c.douyin;
+    const accountLabel = c.qq ? t.qqNumber : t.douyinAccount;
+    const tipText = c.qq ? t.scanToAdd : t.scanToFollow;
     tooltip.innerHTML = `
-      <div class="qq-tooltip-title">QQ号</div>
-      <div class="qq-tooltip-number">${c.qq}</div>
-      <img class="qq-tooltip-qrcode" src="${c.qrcode}" alt="QQ二维码">
-      <div class="qq-tooltip-tip">扫码添加好友</div>
+      <div class="qq-tooltip-title">${accountLabel}</div>
+      <div class="qq-tooltip-number">${account}</div>
+      <img class="qq-tooltip-qrcode" src="${c.qrcode}" alt="${accountLabel}">
+      <div class="qq-tooltip-tip">${tipText}</div>
     `;
     el.appendChild(tooltip);
   }
@@ -1457,6 +1686,7 @@ function applyLang() {
   const base = I18N.en || {};
   const d = Object.assign({}, base, I18N[settings.lang] || I18N.zh);
   document.documentElement.lang = langMap[settings.lang] || 'en';
+  // 批量更新文本属性，减少重排
   document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.dataset.i18n; if (d[key] !== undefined) el.textContent = d[key]; });
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { const key = el.dataset.i18nPlaceholder; if (d[key] !== undefined) el.placeholder = d[key]; });
   document.querySelectorAll('[data-i18n-title]').forEach(el => { const key = el.dataset.i18nTitle; if (d[key] !== undefined) el.title = d[key]; });
@@ -1464,10 +1694,17 @@ function applyLang() {
   document.title = d.introTitle;
   const footerP = document.querySelector('.site-footer p');
   if (footerP) footerP.textContent = d.footer;
-  renderQuickFilters(); renderQuick();
-  renderFilters(); renderResources();
-  renderContacts(); renderGames();
-  updateSegs();
+  // 使用 requestAnimationFrame 分批执行渲染，避免卡顿
+  requestAnimationFrame(() => {
+    renderQuickFilters(); renderQuick();
+    requestAnimationFrame(() => {
+      renderFilters(); renderResources();
+      requestAnimationFrame(() => {
+        renderContacts(); renderGames();
+        updateSegs();
+      });
+    });
+  });
 }
 
 /* ---- 主题解析（仅深色/浅色） ---- */
@@ -1696,9 +1933,11 @@ gameOverlay.addEventListener('click', (e) => { if (e.target === gameOverlay) clo
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !gameOverlay.hidden) closeGame(); });
 
 function startMemory(stage, msg) {
+  const t = I18N[settings.lang] || I18N.zh;
   const EMOJIS = ['🍎', '🍌', '🍇', '🍓', '🍑', '🍒', '🥝', '🍉', '🍊', '🍋', '🥭', '🍍'];
   const WILD = '⭐';
-  stage.innerHTML = '<div class="mem-diff"><p class="mem-diff-title">选择难度</p><div class="mem-diff-btns"><button class="mem-diff-btn" data-size="4">🎯 简单<br><small>4×4 · 8对</small></button><button class="mem-diff-btn" data-size="5">🔥 困难<br><small>5×5 · 12对+⭐</small></button></div></div>';
+  const diffHTML = '<div class="mem-diff"><p class="mem-diff-title">' + t.memSelectDifficulty + '</p><div class="mem-diff-btns"><button class="mem-diff-btn" data-size="4">🎯 ' + t.memEasy + '<br><small>4×4 · 8</small></button><button class="mem-diff-btn" data-size="5">🔥 ' + t.memHard + '<br><small>5×5 · 12+⭐</small></button></div></div>';
+  stage.innerHTML = diffHTML;
   stage.querySelectorAll('.mem-diff-btn').forEach(btn => btn.addEventListener('click', () => initGame(parseInt(btn.dataset.size))));
 
   function initGame(size) {
@@ -1707,7 +1946,7 @@ function startMemory(stage, msg) {
     const selectedEmojis = EMOJIS.slice(0, pairs);
     let cards = is5x5 ? shuffle([...selectedEmojis, ...selectedEmojis, WILD]) : shuffle([...selectedEmojis, ...selectedEmojis]);
     const cellSize = is5x5 ? 48 : 56;
-    stage.innerHTML = '<div class="mem-board" style="grid-template-columns: repeat(' + size + ', ' + cellSize + 'px)"></div><div class="mem-info">步数: 0' + (is5x5 ? ' · 点击⭐万能牌直接消除' : '') + '</div><button class="mem-restart-btn" type="button">🔄 重新选择难度</button>';
+    stage.innerHTML = '<div class="mem-board" style="grid-template-columns: repeat(' + size + ', ' + cellSize + 'px)"></div><div class="mem-info">' + t.memMoves + ': 0' + (is5x5 ? ' · ' + t.memWildCard : '') + '</div><button class="mem-restart-btn" type="button">🔄 ' + t.memReselect + '</button>';
     const board = stage.querySelector('.mem-board');
     const info = stage.querySelector('.mem-info');
     const restartBtn = stage.querySelector('.mem-restart-btn');
@@ -1723,15 +1962,15 @@ function startMemory(stage, msg) {
         if (lock || c.classList.contains('open') || c.classList.contains('done')) return;
         if (c.dataset.emoji === WILD && !wildUsed) {
           c.classList.add('done'); c.textContent = WILD; wildUsed = true; matched++;
-          if (matched === totalPairs) msg.textContent = '🎉 全部配对成功！用了 ' + moves + ' 步';
+          if (matched === totalPairs) msg.textContent = t.memAllMatched + moves + t.memMovesUnit;
           return;
         }
         c.classList.add('open'); c.textContent = e;
         if (!first) { first = c; return; }
-        moves++; info.textContent = '步数: ' + moves + (is5x5 ? ' · 点击⭐万能牌直接消除' : '');
+        moves++; info.textContent = t.memMoves + ': ' + moves + (is5x5 ? ' · ' + t.memWildCard : '');
         if (first.dataset.emoji === c.dataset.emoji) {
           first.classList.add('done'); c.classList.add('done'); first = null; matched++;
-          if (matched === totalPairs) msg.textContent = '🎉 全部配对成功！用了 ' + moves + ' 步';
+          if (matched === totalPairs) msg.textContent = t.memAllMatched + moves + t.memMovesUnit;
         } else {
           lock = true;
           setTimeout(() => {
@@ -1745,7 +1984,7 @@ function startMemory(stage, msg) {
     });
 
     restartBtn.addEventListener('click', () => {
-      stage.innerHTML = '<div class="mem-diff"><p class="mem-diff-title">选择难度</p><div class="mem-diff-btns"><button class="mem-diff-btn" data-size="4">🎯 简单<br><small>4×4 · 8对</small></button><button class="mem-diff-btn" data-size="5">🔥 困难<br><small>5×5 · 12对+⭐</small></button></div></div>';
+      stage.innerHTML = diffHTML;
       stage.querySelectorAll('.mem-diff-btn').forEach(b => b.addEventListener('click', () => initGame(parseInt(b.dataset.size))));
       msg.textContent = '';
     });
@@ -1777,7 +2016,8 @@ function startGuess(stage, msg) {
   return () => {};
 }
 function startSnake(stage, msg) {
-  stage.innerHTML = '<canvas class="snake-canvas" width="360" height="360"></canvas><div class="snake-info">方向键 / WASD 控制 · 得分: <span class="snake-score">0</span></div><button class="snake-start-btn" type="button">▶ 开始游戏</button>';
+  const t = I18N[settings.lang] || I18N.zh;
+  stage.innerHTML = '<canvas class="snake-canvas" width="360" height="360"></canvas><div class="snake-info">' + t.snakeControls + ' · ' + t.snakeScore + ': <span class="snake-score">0</span></div><button class="snake-start-btn" type="button">▶ ' + t.snakeStart + '</button>';
   const cv = stage.querySelector('.snake-canvas');
   const ctx = cv.getContext('2d');
   const startBtn = stage.querySelector('.snake-start-btn');
@@ -1787,12 +2027,18 @@ function startSnake(stage, msg) {
   bgCanvas.width = 360; bgCanvas.height = 360;
   const bgCtx = bgCanvas.getContext('2d');
   (function renderBg() {
+    const isLight = settings.theme === 'light';
     const grad = bgCtx.createRadialGradient(180, 180, 0, 180, 180, 250);
-    grad.addColorStop(0, '#1a2a3a');
-    grad.addColorStop(1, '#0d1b2a');
+    if (isLight) {
+      grad.addColorStop(0, '#e8f5ec');
+      grad.addColorStop(1, '#d0e8d8');
+    } else {
+      grad.addColorStop(0, '#1a2a3a');
+      grad.addColorStop(1, '#0d1b2a');
+    }
     bgCtx.fillStyle = grad;
     bgCtx.fillRect(0, 0, 360, 360);
-    bgCtx.strokeStyle = 'rgba(79, 240, 208, 0.05)';
+    bgCtx.strokeStyle = isLight ? 'rgba(28, 75, 50, 0.08)' : 'rgba(79, 240, 208, 0.05)';
     bgCtx.lineWidth = 1;
     for (let i = 0; i <= N; i++) {
       bgCtx.beginPath(); bgCtx.moveTo(i * SZ, 0); bgCtx.lineTo(i * SZ, 360); bgCtx.stroke();
@@ -1873,18 +2119,18 @@ function startSnake(stage, msg) {
     ctx.globalAlpha = 1;
     // 开始提示
     if (!started) {
-      ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(0, 0, 360, 360);
-      ctx.fillStyle = '#4ff0d0'; ctx.font = 'bold 20px monospace'; ctx.textAlign = 'center';
-      ctx.fillText('点击开始游戏', 180, 180);
+      ctx.fillStyle = settings.theme === 'light' ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.6)'; ctx.fillRect(0, 0, 360, 360);
+      ctx.fillStyle = settings.theme === 'light' ? '#2d7a5a' : '#4ff0d0'; ctx.font = 'bold 20px monospace'; ctx.textAlign = 'center';
+      ctx.fillText(t.snakeClickStart, 180, 180);
       ctx.font = '12px monospace'; ctx.fillStyle = '#8b94a3';
-      ctx.fillText('方向键 / WASD 控制方向', 180, 205);
+      ctx.fillText(t.snakeControlDir, 180, 205);
     }
   }
   function step() {
     if (!alive || !started) return;
     const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
     if (head.x < 0 || head.y < 0 || head.x >= N || head.y >= N || snake.some(s => s.x === head.x && s.y === head.y)) {
-      alive = false; msg.textContent = '💀 游戏结束，得分 ' + score + ' · 点击重新开始'; startBtn.textContent = '🔄 重新开始'; startBtn.hidden = false;
+      alive = false; msg.textContent = t.snakeGameOver + score + t.snakeClickRestart; startBtn.textContent = '🔄 ' + t.snakeRestart; startBtn.hidden = false;
       addParticles(snake[0].x, snake[0].y, '#ff6b6b');
       return;
     }
@@ -1926,13 +2172,15 @@ function startSnake(stage, msg) {
   return () => { clearInterval(timer); window.removeEventListener('keydown', key); };
 }
 function startTetris(stage, msg) {
-  const MODES = { casual: { dropMs: 800, label: '休闲' }, normal: { dropMs: 500, label: '普通' }, speed: { dropMs: 250, label: '极速' } };
+  const t = I18N[settings.lang] || I18N.zh;
+  const MODES = { casual: { dropMs: 800, label: t.tetrisCasual }, normal: { dropMs: 500, label: t.tetrisNormal }, speed: { dropMs: 250, label: t.tetrisSpeed } };
   let timer = null, keyHandler = null;
-  stage.innerHTML = '<div class="tetris-mode"><p class="tetris-mode-title">选择模式</p><div class="tetris-mode-btns"><button class="tetris-mode-btn" data-mode="casual">🌿 休闲<br><small>慢速下落</small></button><button class="tetris-mode-btn" data-mode="normal">🎮 普通<br><small>标准速度</small></button><button class="tetris-mode-btn" data-mode="speed">⚡ 极速<br><small>快速下落</small></button></div></div>';
+  const modeHTML = '<div class="tetris-mode"><p class="tetris-mode-title">' + t.tetrisSelectMode + '</p><div class="tetris-mode-btns"><button class="tetris-mode-btn" data-mode="casual">🌿 ' + t.tetrisCasual + '<br><small>' + t.tetrisSlowDrop + '</small></button><button class="tetris-mode-btn" data-mode="normal">🎮 ' + t.tetrisNormal + '<br><small>' + t.tetrisStandardSpeed + '</small></button><button class="tetris-mode-btn" data-mode="speed">⚡ ' + t.tetrisSpeed + '<br><small>' + t.tetrisFastDrop + '</small></button></div></div>';
+  stage.innerHTML = modeHTML;
   stage.querySelectorAll('.tetris-mode-btn').forEach(btn => btn.addEventListener('click', () => initGame(btn.dataset.mode)));
   function initGame(modeKey) {
     const cfg = MODES[modeKey];
-    stage.innerHTML = '<canvas class="tetris-canvas" width="200" height="400"></canvas><div class="tetris-info">← → 移动 · ↑ 旋转 · ↓ 软降 · 空格 硬降 · ' + cfg.label + '模式 · 得分: <b class="tetris-score">0</b></div><button class="tetris-restart-btn" type="button">🔄 重新选择模式</button>';
+    stage.innerHTML = '<canvas class="tetris-canvas" width="200" height="400"></canvas><div class="tetris-info">' + t.tetrisControls + ' · ' + cfg.label + ' ' + t.tetrisMode + ' · ' + t.snakeScore + ': <b class="tetris-score">0</b></div><button class="tetris-restart-btn" type="button">🔄 ' + t.tetrisReselect + '</button>';
     const cv = stage.querySelector('.tetris-canvas'), ctx = cv.getContext('2d'), restartBtn = stage.querySelector('.tetris-restart-btn');
     const COLS = 10, ROWS = 20, SZ = 20;
     const SHAPES = [
@@ -1943,17 +2191,17 @@ function startTetris(stage, msg) {
     ];
     let grid = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
     let cur = null, score = 0, over = false, lastDrop = 0, dropMs = cfg.dropMs;
-    function newPiece() { const p = SHAPES[Math.floor(Math.random() * SHAPES.length)]; cur = { m: p.m.map(r => r.slice()), color: p.color, x: Math.floor((COLS - p.m[0].length) / 2), y: 0 }; if (collide(cur.m, cur.x, cur.y)) { over = true; msg.textContent = '💀 游戏结束，得分 ' + score; } }
+    function newPiece() { const p = SHAPES[Math.floor(Math.random() * SHAPES.length)]; cur = { m: p.m.map(r => r.slice()), color: p.color, x: Math.floor((COLS - p.m[0].length) / 2), y: 0 }; if (collide(cur.m, cur.x, cur.y)) { over = true; msg.textContent = t.snakeGameOver + score; } }
     function collide(m, x, y) { for (let r = 0; r < m.length; r++) for (let c = 0; c < m[r].length; c++) { if (!m[r][c]) continue; const nx = x + c, ny = y + r; if (nx < 0 || nx >= COLS || ny >= ROWS) return true; if (ny >= 0 && grid[ny][nx]) return true; } return false; }
     function rotate(m) { const R = m.length, C = m[0].length; return Array.from({ length: C }, (_, c) => Array.from({ length: R }, (_, r) => m[R - 1 - r][c])); }
     function merge() { cur.m.forEach((row, r) => row.forEach((v, c) => { if (v) { const ny = cur.y + r; if (ny >= 0) grid[ny][cur.x + c] = cur.color; } })); }
     function clearRows() { let cleared = 0; for (let r = ROWS - 1; r >= 0; r--) { if (grid[r].every(v => v !== 0)) { grid.splice(r, 1); grid.unshift(Array(COLS).fill(0)); r++; cleared++; } } if (cleared) { score += cleared * 100; stage.querySelector('.tetris-score').textContent = score; dropMs = Math.max(80, cfg.dropMs - Math.floor(score / 500) * 40); } }
     function drop() { if (over) return; if (!collide(cur.m, cur.x, cur.y + 1)) { cur.y++; } else { merge(); clearRows(); newPiece(); } draw(); }
     function hardDrop() { if (over) return; while (!collide(cur.m, cur.x, cur.y + 1)) cur.y++; merge(); clearRows(); newPiece(); draw(); }
-    function draw() { ctx.fillStyle = '#0d1b2a'; ctx.fillRect(0, 0, 200, 400); for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) { if (grid[r][c]) { ctx.fillStyle = grid[r][c]; ctx.fillRect(c * SZ, r * SZ, SZ - 1, SZ - 1); } } if (cur && !over) { cur.m.forEach((row, r) => row.forEach((v, c) => { if (v && cur.y + r >= 0) { ctx.fillStyle = cur.color; ctx.fillRect((cur.x + c) * SZ, (cur.y + r) * SZ, SZ - 1, SZ - 1); } })); } }
+    function draw() { ctx.fillStyle = settings.theme === 'light' ? '#d8ecde' : '#0d1b2a'; ctx.fillRect(0, 0, 200, 400); for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) { if (grid[r][c]) { ctx.fillStyle = grid[r][c]; ctx.fillRect(c * SZ, r * SZ, SZ - 1, SZ - 1); } } if (cur && !over) { cur.m.forEach((row, r) => row.forEach((v, c) => { if (v && cur.y + r >= 0) { ctx.fillStyle = cur.color; ctx.fillRect((cur.x + c) * SZ, (cur.y + r) * SZ, SZ - 1, SZ - 1); } })); } }
     keyHandler = function(e) { if (over) return; const k = e.key.length === 1 ? e.key.toLowerCase() : e.key; const move = (dx, dy) => { if (!collide(cur.m, cur.x + dx, cur.y + dy)) { cur.x += dx; cur.y += dy; } draw(); }; if (k === 'ArrowLeft' || k === 'a') { move(-1, 0); e.preventDefault(); } else if (k === 'ArrowRight' || k === 'd') { move(1, 0); e.preventDefault(); } else if (k === 'ArrowDown' || k === 's') { move(0, 1); e.preventDefault(); } else if (k === 'ArrowUp' || k === 'w') { const nm = rotate(cur.m); if (!collide(nm, cur.x, cur.y)) cur.m = nm; draw(); e.preventDefault(); } else if (k === ' ') { hardDrop(); e.preventDefault(); } };
     function loop(ts) { if (over) return; if (ts - lastDrop >= dropMs) { lastDrop = ts; drop(); } if (!over) timer = requestAnimationFrame(loop); }
-    restartBtn.addEventListener('click', () => { if (timer) cancelAnimationFrame(timer); if (keyHandler) window.removeEventListener('keydown', keyHandler); stage.innerHTML = '<div class="tetris-mode"><p class="tetris-mode-title">选择模式</p><div class="tetris-mode-btns"><button class="tetris-mode-btn" data-mode="casual">🌿 休闲<br><small>慢速下落</small></button><button class="tetris-mode-btn" data-mode="normal">🎮 普通<br><small>标准速度</small></button><button class="tetris-mode-btn" data-mode="speed">⚡ 极速<br><small>快速下落</small></button></div></div>'; stage.querySelectorAll('.tetris-mode-btn').forEach(b => b.addEventListener('click', () => initGame(b.dataset.mode))); msg.textContent = ''; });
+    restartBtn.addEventListener('click', () => { if (timer) cancelAnimationFrame(timer); if (keyHandler) window.removeEventListener('keydown', keyHandler); stage.innerHTML = modeHTML; stage.querySelectorAll('.tetris-mode-btn').forEach(b => b.addEventListener('click', () => initGame(b.dataset.mode))); msg.textContent = ''; });
     newPiece(); draw(); timer = requestAnimationFrame(loop); window.addEventListener('keydown', keyHandler);
   }
   return () => { if (timer) cancelAnimationFrame(timer); if (keyHandler) window.removeEventListener('keydown', keyHandler); };
@@ -1961,12 +2209,13 @@ function startTetris(stage, msg) {
 
 /* ===== 扫雷游戏 ===== */
 function startMinesweeper(stage, msg) {
+  const t = I18N[settings.lang] || I18N.zh;
   const DIFFICULTIES = {
-    easy: { rows: 9, cols: 9, mines: 10, label: '简单' },
-    medium: { rows: 12, cols: 12, mines: 25, label: '中等' },
-    hard: { rows: 16, cols: 16, mines: 50, label: '困难' }
+    easy: { rows: 9, cols: 9, mines: 10, label: t.msEasy },
+    medium: { rows: 12, cols: 12, mines: 25, label: t.msMedium },
+    hard: { rows: 16, cols: 16, mines: 50, label: t.msHard }
   };
-  stage.innerHTML = '<div class="ms-diff"><p class="ms-diff-title">选择难度</p><div class="ms-diff-btns"><button class="ms-diff-btn" data-diff="easy">😊 简单<br><small>9×9 · 10雷</small></button><button class="ms-diff-btn" data-diff="medium">😐 中等<br><small>12×12 · 25雷</small></button><button class="ms-diff-btn" data-diff="hard">😈 困难<br><small>16×16 · 50雷</small></button></div></div>';
+  stage.innerHTML = '<div class="ms-diff"><p class="ms-diff-title">' + t.msSelectDifficulty + '</p><div class="ms-diff-btns"><button class="ms-diff-btn" data-diff="easy">😊 ' + t.msEasy + '<br><small>9×9 · 10</small></button><button class="ms-diff-btn" data-diff="medium">😐 ' + t.msMedium + '<br><small>12×12 · 25</small></button><button class="ms-diff-btn" data-diff="hard">😈 ' + t.msHard + '<br><small>16×16 · 50</small></button></div></div>';
   const diffBtns = stage.querySelectorAll('.ms-diff-btn');
   diffBtns.forEach(btn => {
     btn.addEventListener('click', () => initGame(btn.dataset.diff));
@@ -1983,7 +2232,7 @@ function startMinesweeper(stage, msg) {
       cellSize = Math.min(cellSize, Math.floor(maxBoardWidth / COLS));
       cellSize = Math.max(cellSize, 14);
     }
-    stage.innerHTML = '<div class="ms-info">💣 扫雷 · ' + cfg.label + ' · 左键翻开 · 右键标记 · 剩余: <span class="ms-left">' + MINES + '</span></div><div class="ms-board-wrap"><div class="ms-board" style="grid-template-columns: repeat(' + COLS + ', ' + cellSize + 'px)"></div></div><button class="ms-restart-btn" type="button">🔄 重新选择难度</button>';
+    stage.innerHTML = '<div class="ms-info">💣 Minesweeper · ' + cfg.label + ' · ' + t.msLeftClick + ' · ' + t.msRightClick + ' · ' + t.msRemaining + ': <span class="ms-left">' + MINES + '</span></div><div class="ms-board-wrap"><div class="ms-board" style="grid-template-columns: repeat(' + COLS + ', ' + cellSize + 'px)"></div></div><button class="ms-restart-btn" type="button">🔄 ' + t.msReselect + '</button>';
     const board = stage.querySelector('.ms-board');
     const leftEl = stage.querySelector('.ms-left');
     const restartBtn = stage.querySelector('.ms-restart-btn');
@@ -2088,7 +2337,7 @@ function startMinesweeper(stage, msg) {
         for (let rr = 0; rr < ROWS; rr++) for (let cc = 0; cc < COLS; cc++) {
           if (grid[rr][cc] === -1) { revealed[rr][cc] = true; updateCell(rr, cc); }
         }
-        msg.textContent = '💥 踩到地雷了！游戏结束';
+        msg.textContent = t.msGameOver;
         return;
       }
       reveal(r, c);
@@ -2124,7 +2373,8 @@ function startMinesweeper(stage, msg) {
 
 /* ===== 猫跑酷游戏 ===== */
 function startRunner(stage, msg) {
-  stage.innerHTML = '<canvas class="runner-canvas" width="480" height="240"></canvas><div class="runner-info">空格/↑ 跳跃 · ↓/Ctrl 下蹲 · 金币: <span class="runner-coins">0</span> · 得分: <span class="runner-score">0</span> · 最高: <span class="runner-best">0</span></div><button class="runner-start-btn" type="button">▶ 开始游戏</button>';
+  const t = I18N[settings.lang] || I18N.zh;
+  stage.innerHTML = '<canvas class="runner-canvas" width="480" height="240"></canvas><div class="runner-info">' + t.runnerControls + ' · ' + t.runnerCoins + ': <span class="runner-coins">0</span> · ' + t.snakeScore + ': <span class="runner-score">0</span> · ' + t.runnerBest + ': <span class="runner-best">0</span></div><button class="runner-start-btn" type="button">▶ ' + t.snakeStart + '</button>';
   const cv = stage.querySelector('.runner-canvas');
   const ctx = cv.getContext('2d');
   const startBtn = stage.querySelector('.runner-start-btn');
@@ -2138,28 +2388,34 @@ function startRunner(stage, msg) {
   bgCanvas.width = W; bgCanvas.height = H;
   const bgCtx = bgCanvas.getContext('2d');
   (function() {
+    const isLight = settings.theme === 'light';
     const grad = bgCtx.createLinearGradient(0, 0, 0, H);
-    grad.addColorStop(0, '#0a1628'); grad.addColorStop(0.4, '#0d2833');
-    grad.addColorStop(0.7, '#0f3a3d'); grad.addColorStop(1, '#134d45');
+    if (isLight) {
+      grad.addColorStop(0, '#e8f5ec'); grad.addColorStop(0.4, '#d8ecde');
+      grad.addColorStop(0.7, '#c8e0d0'); grad.addColorStop(1, '#b8d4c0');
+    } else {
+      grad.addColorStop(0, '#0a1628'); grad.addColorStop(0.4, '#0d2833');
+      grad.addColorStop(0.7, '#0f3a3d'); grad.addColorStop(1, '#134d45');
+    }
     bgCtx.fillStyle = grad; bgCtx.fillRect(0, 0, W, H);
-    bgCtx.fillStyle = 'rgba(20, 80, 75, 0.5)';
+    bgCtx.fillStyle = isLight ? 'rgba(100, 160, 130, 0.4)' : 'rgba(20, 80, 75, 0.5)';
     bgCtx.beginPath(); bgCtx.moveTo(0, GROUND_Y);
     bgCtx.lineTo(60, 140); bgCtx.lineTo(120, 170); bgCtx.lineTo(180, 120);
     bgCtx.lineTo(240, 155); bgCtx.lineTo(300, 110); bgCtx.lineTo(360, 145);
     bgCtx.lineTo(420, 125); bgCtx.lineTo(480, 160); bgCtx.lineTo(480, GROUND_Y);
     bgCtx.closePath(); bgCtx.fill();
-    bgCtx.fillStyle = 'rgba(15, 60, 55, 0.7)';
+    bgCtx.fillStyle = isLight ? 'rgba(80, 140, 110, 0.5)' : 'rgba(15, 60, 55, 0.7)';
     bgCtx.beginPath(); bgCtx.moveTo(0, GROUND_Y);
     bgCtx.lineTo(80, 165); bgCtx.lineTo(160, 185); bgCtx.lineTo(240, 150);
     bgCtx.lineTo(320, 175); bgCtx.lineTo(400, 155); bgCtx.lineTo(480, 180);
     bgCtx.lineTo(480, GROUND_Y); bgCtx.closePath(); bgCtx.fill();
     for (let i = 0; i < 15; i++) {
-      bgCtx.fillStyle = 'rgba(79, 240, 208, ' + (0.2 + (i % 5) * 0.1) + ')';
+      bgCtx.fillStyle = isLight ? 'rgba(255, 255, 255, ' + (0.3 + (i % 5) * 0.15) + ')' : 'rgba(79, 240, 208, ' + (0.2 + (i % 5) * 0.1) + ')';
       bgCtx.beginPath(); bgCtx.arc((i * 37) % W, 20 + (i * 23) % 120, 1 + (i % 3), 0, Math.PI * 2); bgCtx.fill();
     }
-    bgCtx.fillStyle = '#1a4d3a'; bgCtx.fillRect(0, GROUND_Y, W, H - GROUND_Y);
-    bgCtx.fillStyle = '#2d7a5a'; bgCtx.fillRect(0, GROUND_Y, W, 4);
-    bgCtx.fillStyle = 'rgba(79, 240, 208, 0.15)';
+    bgCtx.fillStyle = isLight ? '#a8d0b8' : '#1a4d3a'; bgCtx.fillRect(0, GROUND_Y, W, H - GROUND_Y);
+    bgCtx.fillStyle = isLight ? '#88c0a0' : '#2d7a5a'; bgCtx.fillRect(0, GROUND_Y, W, 4);
+    bgCtx.fillStyle = isLight ? 'rgba(28, 75, 50, 0.2)' : 'rgba(79, 240, 208, 0.15)';
     for (let i = 0; i < W; i += 20) { bgCtx.fillRect(i, GROUND_Y + 8, 8, 2); bgCtx.fillRect(i + 10, GROUND_Y + 16, 6, 2); }
   })();
   let cat = { x: 60, y: GROUND_Y - 44, w: 40, h: 44, vy: 0, jumping: false, ducking: false, duckTimer: 0 };
@@ -2420,19 +2676,19 @@ function startRunner(stage, msg) {
     ctx.globalAlpha = 1;
     drawCat();
     if (!started || !alive) {
-      ctx.fillStyle = 'rgba(10, 22, 40, 0.75)'; ctx.fillRect(0, 0, W, H);
-      ctx.fillStyle = '#4ff0d0'; ctx.font = 'bold 22px monospace'; ctx.textAlign = 'center';
+      ctx.fillStyle = settings.theme === 'light' ? 'rgba(255, 255, 255, 0.8)' : 'rgba(10, 22, 40, 0.75)'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = settings.theme === 'light' ? '#2d7a5a' : '#4ff0d0'; ctx.font = 'bold 22px monospace'; ctx.textAlign = 'center';
       if (!started) {
-        ctx.fillText('🐱 猫跑酷', W/2, H/2 - 20);
-        ctx.font = '13px monospace'; ctx.fillStyle = '#8b94a3';
-        ctx.fillText('空格/↑ 跳跃 · ↓/Ctrl 下蹲', W/2, H/2 + 5);
-        ctx.fillText('收集金币，躲避水晶和幽灵！', W/2, H/2 + 24);
+        ctx.fillText(t.runnerTitle, W/2, H/2 - 20);
+        ctx.font = '13px monospace'; ctx.fillStyle = settings.theme === 'light' ? '#4a6b55' : '#8b94a3';
+        ctx.fillText(t.runnerControls, W/2, H/2 + 5);
+        ctx.fillText(t.runnerHint, W/2, H/2 + 24);
       } else {
-        ctx.fillText('💀 游戏结束', W/2, H/2 - 15);
-        ctx.font = '14px monospace'; ctx.fillStyle = '#fff';
-        ctx.fillText('金币: ' + coinCount + ' · 得分: ' + score, W/2, H/2 + 10);
-        ctx.font = '12px monospace'; ctx.fillStyle = '#8b94a3';
-        ctx.fillText('点击按钮重新开始', W/2, H/2 + 32);
+        ctx.fillText(t.runnerGameOver, W/2, H/2 - 15);
+        ctx.font = '14px monospace'; ctx.fillStyle = settings.theme === 'light' ? '#1a2e22' : '#fff';
+        ctx.fillText(t.runnerCoins + ': ' + coinCount + ' · ' + t.snakeScore + ': ' + score, W/2, H/2 + 10);
+        ctx.font = '12px monospace'; ctx.fillStyle = settings.theme === 'light' ? '#4a6b55' : '#8b94a3';
+        ctx.fillText(t.runnerClickRestart, W/2, H/2 + 32);
       }
     }
   }
@@ -2461,8 +2717,8 @@ function startRunner(stage, msg) {
       if (cr > o.x && cl < o.x + o.w && cb > o.y && ct < o.y + o.h) {
         alive = false;
         if (score > best) { best = score; localStorage.setItem('zelm_runner_best', best); bestEl.textContent = best; }
-        msg.textContent = '💀 游戏结束！金币 ' + coinCount + ' · 得分 ' + score;
-        startBtn.textContent = '🔄 重新开始'; startBtn.hidden = false;
+        msg.textContent = t.runnerGameOverMsg + coinCount + t.runnerScoreMsg + score;
+        startBtn.textContent = '🔄 ' + t.snakeRestart; startBtn.hidden = false;
         addParticles(cat.x + cat.w/2, cat.y + cat.h/2, '#ff6b6b', 10);
       }
     });
@@ -2571,6 +2827,16 @@ function scrollToTarget(id) {
 document.querySelectorAll('.side-nav [data-target]').forEach(el => {
   el.addEventListener('click', (e) => { e.preventDefault(); scrollToTarget(el.dataset.target); });
 });
+
+/* 点击品牌名回到欢迎页（清除验证状态） */
+const navBrand = document.getElementById('navBrand');
+if (navBrand) {
+  navBrand.addEventListener('click', (e) => {
+    e.preventDefault();
+    try { sessionStorage.removeItem('zelm_verified'); } catch (err) { /* 忽略 */ }
+    window.location.href = 'gate.html';
+  });
+}
 
 /* 滚动隐藏导航栏（设置中选择"滚动隐藏"时生效） */
 let lastScrollY = window.scrollY;

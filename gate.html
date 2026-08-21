@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to Zelm's World</title>
+  <style>
+    /* 预加载背景色，避免页面跳转时白屏闪烁 */
+    html { background-color: #061814; }
+    body { background-color: #061814; }
+  </style>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -48,7 +53,6 @@
   <div class="overlay"></div>
   <div class="star-field" id="starField"></div>
 
-  <script src="i18n-langs.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/ogl@1.0.10/dist/ogl.umd.js"></script>
   <script src="particle-text.js"></script>
   <script src="warp-text.js"></script>

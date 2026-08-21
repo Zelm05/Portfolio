@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zelm 的信息资源库</title>
+  <style>
+    /* 预加载背景色，避免页面跳转时白屏闪烁 */
+    html { background-color: #061814; }
+    body { background-color: #061814; }
+  </style>
   <script>
     /* 门禁：未通过验证则跳转到欢迎页 */
     (function () {
@@ -22,7 +27,7 @@
   <!-- 左侧导航栏 -->
   <nav class="side-nav" id="sideNav">
     <div class="nav-header">
-      <a class="nav-brand" href="#" data-target="top">◉ Zelm</a>
+      <a class="nav-brand" href="gate.html" id="navBrand">◉ Zelm</a>
       <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
     </div>
     <div class="nav-items" id="navItems">
@@ -231,6 +236,24 @@
     </section>
   </main>
 
+  <!-- 音乐播放确认弹窗 -->
+  <div class="modal-overlay" id="musicConfirmOverlay" hidden>
+    <div class="modal music-confirm-modal" role="dialog" aria-label="音乐播放确认">
+      <div class="music-confirm-header">
+        <div class="music-confirm-icon">🎵</div>
+        <div class="music-confirm-text">
+          <h3 class="music-confirm-title" data-i18n="musicConfirmTitle">选择一首歌曲</h3>
+          <p class="music-confirm-desc" data-i18n="musicConfirmDesc">点击歌曲即可播放，或选择暂不播放</p>
+        </div>
+      </div>
+      <div class="music-confirm-list" id="musicConfirmList"></div>
+      <p class="music-loading-hint" data-i18n="musicLoadingHint">⏳ 音乐加载可能需要一点时间，请稍候...</p>
+      <div class="music-confirm-buttons">
+        <button class="music-confirm-btn music-confirm-no" id="musicConfirmNo" data-i18n="musicConfirmNo">暂不播放</button>
+      </div>
+    </div>
+  </div>
+
   <!-- 设置弹窗 -->
   <div class="modal-overlay" id="settingsOverlay" hidden>
     <div class="modal settings-modal" id="settingsPanel" role="dialog" aria-label="设置">
@@ -416,54 +439,54 @@
   </div>
   <div class="mbti-popup" id="mbtiPopup" hidden>
     <div class="mbti-popup-head">
-      <span>🧠 ENFJ · 主人公</span>
+      <span data-i18n="mbtiTitle">🧠 ENFJ · 主人公</span>
       <button class="mbti-popup-close" id="mbtiPopupClose">×</button>
     </div>
     <div class="mbti-popup-body">
       <div class="mbti-type-badge">
         <span class="mbti-big">ENFJ</span>
-        <span class="mbti-cn">主人公 / 教育家</span>
+        <span class="mbti-cn" data-i18n="mbtiSubtitle">主人公 / 教育家</span>
       </div>
-      <div class="mbti-desc">
+      <div class="mbti-desc" data-i18n="mbtiDesc">
         ENFJ 是 MBTI 十六型人格中的一种，被称为"主人公"或"教育家"。他们热情、有感染力、善于激励他人，是天生的领导者和沟通者。
       </div>
       <div class="mbti-section">
-        <h4>✨ 核心特点</h4>
+        <h4 data-i18n="mbtiCoreTraits">✨ 核心特点</h4>
         <ul>
-          <li>外向（E）：善于社交，精力来源于与人互动</li>
-          <li>直觉（N）：关注未来可能性，富有想象力</li>
-          <li>情感（F）：重视和谐，决策基于价值观</li>
-          <li>判断（J）：有计划、有条理，喜欢确定性</li>
+          <li data-i18n="mbtiTraitE">外向（E）：善于社交，精力来源于与人互动</li>
+          <li data-i18n="mbtiTraitN">直觉（N）：关注未来可能性，富有想象力</li>
+          <li data-i18n="mbtiTraitF">情感（F）：重视和谐，决策基于价值观</li>
+          <li data-i18n="mbtiTraitJ">判断（J）：有计划、有条理，喜欢确定性</li>
         </ul>
       </div>
       <div class="mbti-section">
-        <h4>💪 优势</h4>
+        <h4 data-i18n="mbtiStrengths">💪 优势</h4>
         <ul>
-          <li>富有感染力和领导力，能激励团队</li>
-          <li>善于沟通和共情，理解他人需求</li>
-          <li>热情乐观，积极推动事情发展</li>
-          <li>有责任心，值得信赖</li>
+          <li data-i18n="mbtiStrength1">富有感染力和领导力，能激励团队</li>
+          <li data-i18n="mbtiStrength2">善于沟通和共情，理解他人需求</li>
+          <li data-i18n="mbtiStrength3">热情乐观，积极推动事情发展</li>
+          <li data-i18n="mbtiStrength4">有责任心，值得信赖</li>
         </ul>
       </div>
       <div class="mbti-section">
-        <h4>⚠️ 需注意</h4>
+        <h4 data-i18n="mbtiWeaknesses">⚠️ 需注意</h4>
         <ul>
-          <li>可能过于理想化，对他人期望过高</li>
-          <li>容易过度承担，忽视自己需求</li>
-          <li>对批评敏感，需要学会接受反馈</li>
-          <li>有时过于强势，需学会倾听</li>
+          <li data-i18n="mbtiWeakness1">可能过于理想化，对他人期望过高</li>
+          <li data-i18n="mbtiWeakness2">容易过度承担，忽视自己需求</li>
+          <li data-i18n="mbtiWeakness3">对批评敏感，需要学会接受反馈</li>
+          <li data-i18n="mbtiWeakness4">有时过于强势，需学会倾听</li>
         </ul>
       </div>
       <div class="mbti-section">
-        <h4>💼 适合职业</h4>
-        <p>教师、人力资源、心理咨询、公关、市场营销、项目经理、社会工作者、政治家、培训师</p>
+        <h4 data-i18n="mbtiCareers">💼 适合职业</h4>
+        <p data-i18n="mbtiCareersDesc">教师、人力资源、心理咨询、公关、市场营销、项目经理、社会工作者、政治家、培训师</p>
       </div>
       <div class="mbti-section">
-        <h4>🤝 相处建议</h4>
-        <p>与 ENFJ 相处时，真诚表达你的想法和感受，他们重视深度交流。认可他们的努力和贡献，给予积极反馈。同时也要提醒他们关注自己的需求，不要过度付出。</p>
+        <h4 data-i18n="mbtiRelationship">🤝 相处建议</h4>
+        <p data-i18n="mbtiRelationshipDesc">与 ENFJ 相处时，真诚表达你的想法和感受，他们重视深度交流。认可他们的努力和贡献，给予积极反馈。同时也要提醒他们关注自己的需求，不要过度付出。</p>
       </div>
       <div class="mbti-famous">
-        <span>知名人物：奥巴马 · 奥普拉 · 马丁·路德·金 · 本·阿弗莱克</span>
+        <span data-i18n="mbtiFamous">知名人物：奥巴马 · 奥普拉 · 马丁·路德·金 · 本·阿弗莱克</span>
       </div>
     </div>
   </div>
@@ -622,14 +645,14 @@
       <div class="music-now-playing" id="musicNowPlaying">
         <div class="music-np-disc" id="musicNpDisc"></div>
         <div class="music-np-info">
-          <div class="music-np-title" id="musicNpTitle">未播放</div>
+          <div class="music-np-title" id="musicNpTitle" data-i18n="musicNotPlaying">未播放</div>
           <div class="music-np-artist" id="musicNpArtist">-</div>
         </div>
       </div>
       <div class="music-controls">
-        <button class="music-ctrl-btn" id="musicPrevBtn" title="上一首">⏮</button>
-        <button class="music-ctrl-btn music-play-btn" id="musicPlayBtn" title="播放/暂停">▶</button>
-        <button class="music-ctrl-btn" id="musicNextBtn" title="下一首">⏭</button>
+        <button class="music-ctrl-btn" id="musicPrevBtn" data-i18n-title="musicPrev" title="上一首">⏮</button>
+        <button class="music-ctrl-btn music-play-btn" id="musicPlayBtn" data-i18n-title="musicPlayPause" title="播放/暂停">▶</button>
+        <button class="music-ctrl-btn" id="musicNextBtn" data-i18n-title="musicNext" title="下一首">⏭</button>
       </div>
       <div class="music-progress">
         <span class="music-time" id="musicCurTime">0:00</span>
@@ -641,7 +664,6 @@
         <input type="range" class="music-volume-bar" id="musicVolumeBar" min="0" max="100" value="70">
         <span class="music-volume-val" id="musicVolumeVal">70%</span>
       </div>
-      <p class="music-autoplay-hint">💡 进入网页自动播放，设置可关闭自动播放</p>
       <div class="music-list" id="musicList"></div>
     </div>
   </div>
@@ -653,9 +675,5 @@
   <audio id="bgAudio" loop preload="auto"></audio>
 
   <script src="script.js"></script>
-  <script src="i18n-langs.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/ogl@1.0.10/dist/ogl.umd.js"></script>
-  <script src="particle-text.js"></script>
-  <script src="warp-text.js"></script>
 </body>
 </html>

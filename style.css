@@ -29,6 +29,16 @@ body {
   background: var(--bg);
   overflow-x: hidden;
   padding-left: 190px; /* 左侧导航栏占位 */
+  animation: pageEnter 0.8s ease both;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* ===== 左侧导航栏（原版布局） ===== */
@@ -232,6 +242,18 @@ body.nav-hide-mode .side-nav.nav-hidden {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px 6vw 140px;
+  animation: containerEnter 0.8s ease 0.1s both;
+}
+
+@keyframes containerEnter {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .intro {
@@ -468,7 +490,7 @@ body.nav-hide-mode .side-nav.nav-hidden {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 32px;
   padding-top: 10px;
 }
 
@@ -823,15 +845,20 @@ body.nav-hide-mode .side-nav.nav-hidden {
   text-align: right;
 }
 
-.music-autoplay-hint {
+.music-loading-hint {
   font-size: 0.72rem;
-  color: rgba(79, 240, 208, 0.6);
+  color: rgba(79, 240, 208, 0.7);
   text-align: center;
-  margin: 8px 0 4px;
-  padding: 6px 10px;
-  background: rgba(79, 240, 208, 0.06);
+  margin: 8px 0 10px;
+  padding: 8px 12px;
+  background: rgba(79, 240, 208, 0.08);
   border-radius: 8px;
-  border: 1px solid rgba(79, 240, 208, 0.15);
+  border: 1px solid rgba(79, 240, 208, 0.2);
+  animation: loadingPulse 2s ease-in-out infinite;
+}
+@keyframes loadingPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
 }
 
 /* 音乐列表 */
@@ -1999,6 +2026,204 @@ body.nav-hide-mode .side-nav.nav-hidden {
   animation: modalIn 0.28s ease;
 }
 
+/* 音乐播放确认弹窗 */
+.music-confirm-modal {
+  width: min(440px, 92%);
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  background: linear-gradient(160deg, rgba(12, 28, 24, 0.98) 0%, rgba(8, 18, 16, 0.98) 100%);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 60px rgba(79, 240, 208, 0.08);
+}
+.music-confirm-modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #4ff0d0, #7ff0dc, #4ff0d0, transparent);
+  opacity: 0.8;
+}
+.music-confirm-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 24px 18px;
+  border-bottom: 1px solid rgba(79, 240, 208, 0.12);
+  background: linear-gradient(180deg, rgba(79, 240, 208, 0.06) 0%, transparent 100%);
+}
+.music-confirm-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(79, 240, 208, 0.2), rgba(79, 240, 208, 0.05));
+  border: 1px solid rgba(79, 240, 208, 0.3);
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  animation: musicBounce 1.5s ease-in-out infinite;
+  box-shadow: 0 4px 16px rgba(79, 240, 208, 0.15);
+}
+@keyframes musicBounce {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-4px) rotate(3deg); }
+}
+.music-confirm-text {
+  flex: 1;
+  min-width: 0;
+}
+.music-confirm-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 3px 0;
+  letter-spacing: 0.5px;
+}
+.music-confirm-desc {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.4;
+  margin: 0;
+}
+.music-confirm-list {
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 8px;
+  margin: 0;
+}
+.music-confirm-list::-webkit-scrollbar {
+  width: 5px;
+}
+.music-confirm-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.music-confirm-list::-webkit-scrollbar-thumb {
+  background: rgba(79, 240, 208, 0.25);
+  border-radius: 3px;
+}
+.music-confirm-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(79, 240, 208, 0.4);
+}
+.music-confirm-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  margin-bottom: 4px;
+  position: relative;
+  overflow: hidden;
+}
+.music-confirm-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #4ff0d0, #7ff0dc);
+  transition: height 0.25s ease;
+}
+.music-confirm-item:last-child {
+  margin-bottom: 0;
+}
+.music-confirm-item:hover {
+  background: rgba(79, 240, 208, 0.1);
+  transform: translateX(4px);
+}
+.music-confirm-item:hover::before {
+  height: 60%;
+}
+.music-confirm-item:hover .music-confirm-item-title {
+  color: #7ff0dc;
+}
+.music-confirm-item-num {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+  font-variant-numeric: tabular-nums;
+}
+.music-confirm-item:hover .music-confirm-item-num {
+  background: rgba(79, 240, 208, 0.15);
+  color: #7ff0dc;
+}
+.music-confirm-item-info {
+  flex: 1;
+  min-width: 0;
+}
+.music-confirm-item-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.25s ease;
+}
+.music-confirm-item-artist {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 3px;
+}
+.music-confirm-item-play {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4ff0d0, #7ff0dc);
+  color: #0a1a16;
+  font-size: 0.7rem;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(79, 240, 208, 0.3);
+}
+.music-confirm-item:hover .music-confirm-item-play {
+  opacity: 1;
+  transform: scale(1);
+}
+.music-confirm-buttons {
+  display: flex;
+  justify-content: center;
+  padding: 0 24px 22px;
+}
+.music-confirm-btn {
+  padding: 11px 36px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.5px;
+}
+.music-confirm-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
 .modal-close {
   position: sticky;
   top: 14px;
@@ -2222,16 +2447,19 @@ html:not(.site-open) {
 /* ===== 退出过渡动画 ===== */
 #gate.gate-leaving {
   pointer-events: none;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.35s ease-out, transform 0.35s ease-out;
 }
 #gate.gate-leaving .gate-card {
   opacity: 0;
-  transform: translateY(-50px) scale(0.94);
-  transition: opacity 0.45s ease, transform 0.45s ease;
+  transform: translateY(15px) scale(0.97);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
 #gate.gate-leaving::before,
 #gate.gate-leaving::after {
   opacity: 0;
-  transition: opacity 0.55s ease 0.12s;
+  transition: opacity 0.3s ease-out;
 }
 
 /* ===== 主站进入动画 ===== */
@@ -2248,24 +2476,24 @@ html:not(.site-open) .site-header {
   to { opacity: 1; }
 }
 @keyframes mainSlideLeft {
-  from { opacity: 0; transform: translateX(-40px); }
+  from { opacity: 0; transform: translateX(-20px); }
   to { opacity: 1; transform: translateX(0); }
 }
 @keyframes mainSlideDown {
-  from { opacity: 0; transform: translateY(-30px); }
+  from { opacity: 0; transform: translateY(-15px); }
   to { opacity: 1; transform: translateY(0); }
 }
 @keyframes mainSlideUp {
-  from { opacity: 0; transform: translateY(40px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-html.site-open .bg-layer { animation: mainFadeIn 0.7s ease 0.05s both; }
-html.site-open .overlay { animation: mainFadeIn 0.7s ease 0.1s both; }
-html.site-open .star-field { animation: mainFadeIn 0.8s ease 0.15s both; }
-html.site-open .side-nav { animation: mainSlideLeft 0.6s ease 0.1s both; }
-html.site-open .site-header { animation: mainSlideDown 0.6s ease 0.15s both; }
-html.site-open .container { animation: mainSlideUp 0.7s ease 0.2s both; }
+html.site-open .bg-layer { animation: mainFadeIn 0.4s ease-out 0.02s both; }
+html.site-open .overlay { animation: mainFadeIn 0.4s ease-out 0.04s both; }
+html.site-open .star-field { animation: mainFadeIn 0.5s ease-out 0.06s both; }
+html.site-open .side-nav { animation: mainSlideLeft 0.4s ease-out 0.08s both; }
+html.site-open .site-header { animation: mainSlideDown 0.4s ease-out 0.1s both; }
+html.site-open .container { animation: mainSlideUp 0.5s ease-out 0.12s both; }
 
 /* 兜底：进入站点后内容强制可见 */
 html.site-open .container,
@@ -3287,6 +3515,7 @@ html[data-theme="light"] .gate-theme-btn:hover {
   width: 100%;
   padding-bottom: 8px;
   margin-bottom: 12px;
+  text-align: center;
 }
 .ms-board-wrap::-webkit-scrollbar {
   height: 6px;
@@ -3682,6 +3911,111 @@ html[data-theme="light"] .switch {
 }
 html[data-theme="light"] .switch::after {
   background: #f0f7f2;
+}
+html[data-theme="light"] .fortune-popup {
+  background: rgba(214, 236, 222, 0.97);
+  border-color: rgba(28, 75, 50, 0.2);
+  box-shadow: 0 10px 40px rgba(30, 70, 50, 0.15);
+}
+html[data-theme="light"] .mbti-popup {
+  background: rgba(214, 236, 222, 0.98);
+  border-color: rgba(28, 75, 50, 0.2);
+  box-shadow: 0 20px 60px rgba(30, 70, 50, 0.2);
+}
+html[data-theme="light"] .mbti-popup-head,
+html[data-theme="light"] .fortune-popup-head {
+  border-bottom-color: rgba(28, 75, 50, 0.12);
+}
+html[data-theme="light"] .mbti-popup-close,
+html[data-theme="light"] .fortune-popup-close {
+  color: #1a2e22;
+}
+html[data-theme="light"] .mbti-popup-close:hover,
+html[data-theme="light"] .fortune-popup-close:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+html[data-theme="light"] .music-confirm-modal {
+  background: linear-gradient(160deg, rgba(214, 236, 222, 0.98) 0%, rgba(200, 228, 212, 0.98) 100%);
+  box-shadow: 0 30px 80px rgba(30, 70, 50, 0.25);
+}
+html[data-theme="light"] .music-confirm-item {
+  background: rgba(0, 0, 0, 0.03);
+}
+html[data-theme="light"] .music-confirm-item:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+html[data-theme="light"] .music-confirm-item-name,
+html[data-theme="light"] .music-confirm-title {
+  color: #1a2e22;
+}
+html[data-theme="light"] .music-confirm-item-artist,
+html[data-theme="light"] .music-confirm-desc,
+html[data-theme="light"] .music-loading-hint {
+  color: #4a6b55;
+}
+html[data-theme="light"] .fortune-float {
+  background: rgba(214, 236, 222, 0.9);
+  border-color: rgba(28, 75, 50, 0.3);
+  box-shadow: 0 6px 20px rgba(30, 70, 50, 0.15);
+}
+html[data-theme="light"] .qq-tooltip {
+  background: rgba(214, 236, 222, 0.97);
+  border-color: rgba(28, 75, 50, 0.2);
+  box-shadow: 0 12px 40px rgba(30, 70, 50, 0.2);
+}
+html[data-theme="light"] .qq-tooltip-title,
+html[data-theme="light"] .qq-tooltip-number,
+html[data-theme="light"] .qq-tooltip-tip {
+  color: #1a2e22;
+}
+html[data-theme="light"] .qq-tooltip::after {
+  border-top-color: rgba(214, 236, 222, 0.97);
+}
+html[data-theme="light"] .ms-info {
+  color: #4a6b55;
+}
+html[data-theme="light"] .ms-cell {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(28, 75, 50, 0.15);
+}
+html[data-theme="light"] .ms-cell:hover {
+  background: rgba(79, 240, 208, 0.15);
+}
+html[data-theme="light"] .ms-cell.revealed {
+  background: rgba(255, 255, 255, 0.6);
+}
+html[data-theme="light"] .ms-diff-btn {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(28, 75, 50, 0.2);
+  color: #1a2e22;
+}
+html[data-theme="light"] .ms-diff-btn:hover {
+  background: rgba(79, 240, 208, 0.15);
+}
+html[data-theme="light"] .ms-restart-btn,
+html[data-theme="light"] .snake-start-btn,
+html[data-theme="light"] .tetris-restart-btn,
+html[data-theme="light"] .tetris-mode-btn {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(28, 75, 50, 0.2);
+  color: #1a2e22;
+}
+html[data-theme="light"] .ms-restart-btn:hover,
+html[data-theme="light"] .snake-start-btn:hover,
+html[data-theme="light"] .tetris-restart-btn:hover,
+html[data-theme="light"] .tetris-mode-btn:hover {
+  background: rgba(79, 240, 208, 0.15);
+}
+html[data-theme="light"] .mem-diff-btn {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(28, 75, 50, 0.2);
+  color: #1a2e22;
+}
+html[data-theme="light"] .mem-diff-btn:hover {
+  background: rgba(79, 240, 208, 0.15);
+}
+html[data-theme="light"] .runner-canvas {
+  background: #d8ecde;
 }
 
 /* 配色：莫兰迪低饱和 */

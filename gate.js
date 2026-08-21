@@ -28,7 +28,7 @@
     try { sessionStorage.setItem('zelm_verified', '1'); } catch (e) { /* 忽略 */ }
     setTimeout(function () {
       window.location.href = 'index.html';
-    }, 780);
+    }, 350);
   }
 
   btn.addEventListener('click', pass);
