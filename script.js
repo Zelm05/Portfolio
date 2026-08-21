@@ -411,7 +411,7 @@ const I18N = {
 
 const DEFAULT_SETTINGS = {
   lang: 'zh',
-  autoPlay: false,
+  autoPlay: true,
   volume: 0.6,
   fontSize: 'medium',
   overlay: 55,
@@ -1218,9 +1218,44 @@ document.addEventListener('click', (e) => {
   }
 });
 
-if (settings.autoPlay) {
-  playMusic(0);
+// 预加载所有音乐文件（后台缓存）
+function preloadAllMusic() {
+  MUSIC_LIST.forEach((m, i) => {
+    const preloadAudio = new Audio();
+    preloadAudio.preload = 'auto';
+    preloadAudio.src = m.url;
+    // 不播放，只缓存
+  });
 }
+
+// 尝试自动播放（浏览器可能阻止，需要用户交互）
+let autoPlayAttempted = false;
+function tryAutoPlay() {
+  if (autoPlayAttempted) return;
+  autoPlayAttempted = true;
+  if (settings.autoPlay && MUSIC_LIST.length > 0) {
+    playMusic(0);
+  }
+}
+
+// 页面加载后预加载所有音乐
+preloadAllMusic();
+
+// 尝试自动播放
+if (settings.autoPlay) {
+  tryAutoPlay();
+  // 如果浏览器阻止自动播放，在用户第一次交互时播放
+  const onFirstInteract = () => {
+    tryAutoPlay();
+    document.removeEventListener('click', onFirstInteract);
+    document.removeEventListener('touchstart', onFirstInteract);
+    document.removeEventListener('keydown', onFirstInteract);
+  };
+  document.addEventListener('click', onFirstInteract);
+  document.addEventListener('touchstart', onFirstInteract);
+  document.addEventListener('keydown', onFirstInteract);
+}
+
 renderMusicList();
 updateNowPlaying();
 

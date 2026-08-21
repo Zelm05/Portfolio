@@ -756,6 +756,17 @@ body.nav-hide-mode .side-nav.nav-hidden {
   text-align: right;
 }
 
+.music-autoplay-hint {
+  font-size: 0.72rem;
+  color: rgba(79, 240, 208, 0.6);
+  text-align: center;
+  margin: 8px 0 4px;
+  padding: 6px 10px;
+  background: rgba(79, 240, 208, 0.06);
+  border-radius: 8px;
+  border: 1px solid rgba(79, 240, 208, 0.15);
+}
+
 /* 音乐列表 */
 .music-list {
   display: flex;
