@@ -2362,6 +2362,9 @@ html.site-open #gate {
   cursor: pointer;
   transition: all 0.2s;
   line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 .gate-theme-btn {
   font-size: 0.9rem;
