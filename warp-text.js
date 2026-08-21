@@ -74,8 +74,15 @@
   }
 
   // ===== 通用 Warp 核心 =====
+  function hasWebGL2() {
+    try {
+      var c = document.createElement('canvas');
+      return !!(window.WebGL2RenderingContext && c.getContext('webgl2'));
+    } catch (e) { return false; }
+  }
   function createWarp(container, options, getTextureCanvas) {
     if (!container || typeof ogl === 'undefined') return null;
+    if (!hasWebGL2()) return null; // 无 WebGL2 时保留原始文字/图片，避免黑屏
     var props = Object.assign({
       warpStrength: 0.08,
       warpScale: 1.7,
@@ -117,38 +124,44 @@
     canvas.setAttribute('aria-hidden', 'true');
     container.appendChild(canvas);
 
-    texture = new ogl.Texture(gl, {
-      generateMipmaps: false,
-      minFilter: gl.LINEAR,
-      magFilter: gl.LINEAR,
-      wrapS: gl.CLAMP_TO_EDGE,
-      wrapT: gl.CLAMP_TO_EDGE
-    });
+    try {
+      texture = new ogl.Texture(gl, {
+        generateMipmaps: false,
+        minFilter: gl.LINEAR,
+        magFilter: gl.LINEAR,
+        wrapS: gl.CLAMP_TO_EDGE,
+        wrapT: gl.CLAMP_TO_EDGE
+      });
 
-    geometry = new ogl.Triangle(gl);
-    program = new ogl.Program(gl, {
-      vertex: vertex,
-      fragment: fragment,
-      transparent: true,
-      depthTest: false,
-      depthWrite: false,
-      uniforms: {
-        uTextTexture: { value: texture },
-        uResolution: { value: new Float32Array([1, 1]) },
-        uPointer: { value: new Float32Array([0.5, 0.5]) },
-        uPointerActive: { value: 0 },
-        uTime: { value: 0 },
-        uWarpStrength: { value: props.warpStrength },
-        uWarpScale: { value: props.warpScale },
-        uSpeed: { value: props.speed },
-        uPointerInfluence: { value: props.pointerInfluence },
-        uPointerStrength: { value: props.pointerStrength },
-        uRefraction: { value: props.refraction },
-        uRipple: { value: props.ripple ? 1 : 0 },
-        uMotion: { value: reduceMotion ? 0 : 1 }
-      }
-    });
-    mesh = new ogl.Mesh(gl, { geometry: geometry, program: program });
+      geometry = new ogl.Triangle(gl);
+      program = new ogl.Program(gl, {
+        vertex: vertex,
+        fragment: fragment,
+        transparent: true,
+        depthTest: false,
+        depthWrite: false,
+        uniforms: {
+          uTextTexture: { value: texture },
+          uResolution: { value: new Float32Array([1, 1]) },
+          uPointer: { value: new Float32Array([0.5, 0.5]) },
+          uPointerActive: { value: 0 },
+          uTime: { value: 0 },
+          uWarpStrength: { value: props.warpStrength },
+          uWarpScale: { value: props.warpScale },
+          uSpeed: { value: props.speed },
+          uPointerInfluence: { value: props.pointerInfluence },
+          uPointerStrength: { value: props.pointerStrength },
+          uRefraction: { value: props.refraction },
+          uRipple: { value: props.ripple ? 1 : 0 },
+          uMotion: { value: reduceMotion ? 0 : 1 }
+        }
+      });
+      mesh = new ogl.Mesh(gl, { geometry: geometry, program: program });
+    } catch (e) {
+      console.warn('Warp: WebGL 资源创建失败，已降级显示', e);
+      if (canvas.parentNode === container) container.removeChild(canvas);
+      return null;
+    }
 
     function renderOnce() {
       if (disposed || contextLost) return;

@@ -225,9 +225,24 @@
   }
 
   // ===== WebGL 高光描边特效 =====
-  if (typeof ogl === 'undefined') return; // ogl 库未加载时跳过特效
+  function hasWebGL2() {
+    try {
+      var c = document.createElement('canvas');
+      return !!(window.WebGL2RenderingContext && c.getContext('webgl2'));
+    } catch (e) { return false; }
+  }
+  if (typeof ogl === 'undefined' || !hasWebGL2()) return; // 无 ogl 或无 WebGL2 时跳过特效
   var canvas = btn.querySelector('.specular-fx');
   if (!canvas) return;
+
+  var dpr = window.devicePixelRatio || 1;
+  var renderer;
+  try {
+    renderer = new ogl.Renderer({ alpha: true, premultipliedAlpha: true, antialias: true, dpr: dpr });
+  } catch (e) {
+    console.warn('Gate WebGL 初始化失败，已降级显示', e);
+    return;
+  }
 
   var PAD = 20;
   var VERT = '#version 300 es\nin vec2 position;\nvoid main() {\n  gl_Position = vec4(position, 0.0, 1.0);\n}\n';
@@ -247,8 +262,6 @@
     autoAnimate: false
   };
 
-  var dpr = window.devicePixelRatio || 1;
-  var renderer = new ogl.Renderer({ alpha: true, premultipliedAlpha: true, antialias: true, dpr: dpr });
   var gl = renderer.gl;
   gl.clearColor(0, 0, 0, 0);
   gl.enable(gl.BLEND);

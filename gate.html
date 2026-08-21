@@ -9,6 +9,28 @@
     html { background-color: #061814; }
     body { background-color: #061814; }
   </style>
+  <script>
+    /* 早期环境探测：为 QQ/微信/X5 内核及无 WebGL2 设备添加降级类名 */
+    (function () {
+      var ua = navigator.userAgent.toLowerCase();
+      var isQQ = /qqbrowser|mqqbrowser|qbwebview/.test(ua);
+      var isWeChat = /micromessenger/.test(ua);
+      var isX5 = /tbs|x5/.test(ua);
+      var isMobile = /mobile|android|iphone|ipad|ipod/.test(ua);
+      function hasWebGL2() {
+        try {
+          var c = document.createElement('canvas');
+          return !!(window.WebGL2RenderingContext && c.getContext('webgl2'));
+        } catch (e) { return false; }
+      }
+      var html = document.documentElement;
+      if (isMobile) html.classList.add('is-mobile');
+      if (isQQ) html.classList.add('is-qq');
+      if (isWeChat) html.classList.add('is-wechat');
+      if (isX5) html.classList.add('is-x5');
+      if (!hasWebGL2()) html.classList.add('no-webgl2');
+    })();
+  </script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
