@@ -504,6 +504,73 @@ body.nav-hide-mode .side-nav.nav-hidden {
   background: rgba(253, 164, 175, 0.12);
 }
 
+/* QQ tooltip */
+.contact-icon-only.has-qq-tooltip {
+  position: relative;
+}
+.qq-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  width: 200px;
+  padding: 16px;
+  background: rgba(10, 20, 18, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(79, 240, 208, 0.3);
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(79, 240, 208, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s ease;
+  z-index: 100;
+  text-align: center;
+  pointer-events: none;
+}
+.qq-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: rgba(79, 240, 208, 0.3);
+}
+.contact-icon-only.has-qq-tooltip:hover .qq-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.qq-tooltip-title {
+  font-size: 0.75rem;
+  color: rgba(79, 240, 208, 0.7);
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+.qq-tooltip-number {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #7ff0dc;
+  margin-bottom: 12px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+}
+.qq-tooltip-qrcode {
+  width: 140px;
+  height: 140px;
+  border-radius: 10px;
+  background: #fff;
+  padding: 6px;
+  object-fit: cover;
+  margin: 0 auto 10px;
+  display: block;
+}
+.qq-tooltip-tip {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 /* 联系方式：可跳转（链接）居中、可复制分列两侧 */
 .contact-group {
   display: flex;
