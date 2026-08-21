@@ -656,16 +656,26 @@ function renderQuickPagination(totalPages) {
   const nums = document.getElementById('quickPageNumbers');
   const prev = document.getElementById('quickPrev');
   const next = document.getElementById('quickNext');
+  const jumpInput = document.getElementById('quickJumpInput');
   if (!pg) return;
   pg.hidden = false;
   const curPage = getQuickPage();
   let html = '';
-  for (let i = 1; i <= totalPages; i++) {
-    html += `<button class="page-num ${i === curPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+  // 只显示前一页、当前页、后一页
+  if (curPage > 1) {
+    html += `<button class="page-num" data-page="${curPage - 1}">${curPage - 1}</button>`;
+  }
+  html += `<button class="page-num active" data-page="${curPage}">${curPage}</button>`;
+  if (curPage < totalPages) {
+    html += `<button class="page-num" data-page="${curPage + 1}">${curPage + 1}</button>`;
   }
   nums.innerHTML = html;
   prev.disabled = curPage <= 1;
   next.disabled = curPage >= totalPages;
+  if (jumpInput) {
+    jumpInput.max = totalPages;
+    jumpInput.placeholder = `1-${totalPages}`;
+  }
 }
 document.getElementById('quickPrev').addEventListener('click', (e) => {
   e.preventDefault();
@@ -684,6 +694,28 @@ document.getElementById('quickPageNumbers').addEventListener('click', (e) => {
   setQuickPage(parseInt(btn.dataset.page, 10));
   renderQuick();
 });
+
+// 跳转按钮
+const quickJumpBtn = document.getElementById('quickJumpBtn');
+const quickJumpInput = document.getElementById('quickJumpInput');
+if (quickJumpBtn && quickJumpInput) {
+  quickJumpBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const val = parseInt(quickJumpInput.value, 10);
+    const totalPages = Math.ceil(quickLinks.length / getQuickPageSize());
+    if (val >= 1 && val <= totalPages) {
+      setQuickPage(val);
+      renderQuick();
+      quickJumpInput.value = '';
+    }
+  });
+  quickJumpInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      quickJumpBtn.click();
+    }
+  });
+}
 
 if (quickSearch) {
   quickSearch.addEventListener('input', () => {

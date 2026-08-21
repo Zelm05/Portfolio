@@ -214,9 +214,13 @@
         <p data-i18n="quickEmptyText">没有找到匹配的快捷网页</p>
       </section>
       <div class="quick-pagination" id="quickPagination" hidden>
-        <button class="page-btn" id="quickPrev" disabled>‹</button>
+        <button class="page-btn" id="quickPrev" disabled>‹ 上一页</button>
         <span class="page-numbers" id="quickPageNumbers"></span>
-        <button class="page-btn" id="quickNext">›</button>
+        <button class="page-btn" id="quickNext">下一页 ›</button>
+        <span class="page-jump">
+          <input type="number" id="quickJumpInput" min="1" placeholder="页码">
+          <button class="page-btn page-jump-btn" id="quickJumpBtn">跳转</button>
+        </span>
       </div>
     </section>
 
