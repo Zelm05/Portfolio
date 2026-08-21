@@ -40,9 +40,6 @@ const I18N = {
     qkDesc: '简介',
     quickSearchPlaceholder: '搜索快捷网页名称或简介…',
     quickEmptyText: '没有找到匹配的快捷网页',
-    petPlaced: '就放在这里啦 ✨',
-    petLooking: '在找什么呢？这里有好多星光',
-    petBack: '喵~ 我回来啦',
     emptyText: '资源下载暂时还没有内容',
     delConfirm: '确定删除这条吗？此操作不可撤销！',
     addedLabel: '添加于',
@@ -64,9 +61,6 @@ const I18N = {
     catSvc: '服务',
     catTool: '工具',
     catVideo: '视频',
-    hidePet: '🙈 关闭宠物',
-    restorePet: '重新显示宠物',
-    petTouch: '点击摸摸我',
     speaker: '音量',
     footer: '© 2026 Zelm · 在幽静的夜里收集星光',
     settingsTitle: '设置',
@@ -264,9 +258,6 @@ const I18N = {
     qkDesc: 'Short description',
     quickSearchPlaceholder: 'Search quick links by name or description…',
     quickEmptyText: 'No matching quick links',
-    petPlaced: 'Placed here ✨',
-    petLooking: 'Looking for something? So much starlight here',
-    petBack: 'Meow~ I am back',
     emptyText: 'No content yet',
     delConfirm: 'Delete this item? This cannot be undone!',
     addedLabel: 'Added',
@@ -288,9 +279,6 @@ const I18N = {
     catSvc: 'Service',
     catTool: 'Tools',
     catVideo: 'Video',
-    hidePet: '🙈 Hide pet',
-    restorePet: 'Show pet',
-    petTouch: 'Click me',
     speaker: 'Volume',
     footer: '© 2026 Zelm · Collecting starlight in the quiet night',
     settingsTitle: 'Settings',
@@ -1014,6 +1002,12 @@ let lastVolume = 0.7;
 audio.volume = settings.volume || 0.7;
 if (musicVolumeBar) musicVolumeBar.value = Math.round(audio.volume * 100);
 if (musicVolumeVal) musicVolumeVal.textContent = Math.round(audio.volume * 100) + '%';
+
+// 页面加载后预加载第一首歌（后台缓存，不自动播放）
+if (MUSIC_LIST.length > 0) {
+  audio.src = MUSIC_LIST[0].url;
+  audio.load();
+}
 
 function formatTime(sec) {
   if (!isFinite(sec)) return '0:00';
