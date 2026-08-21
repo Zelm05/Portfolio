@@ -1253,11 +1253,12 @@ body.nav-hide-mode .side-nav.nav-hidden {
     flex-wrap: wrap;
   }
   .quick-pagination .page-btn {
-    min-width: auto;
+    width: 32px;
+    min-width: 32px;
     height: 32px;
-    padding: 0 10px;
-    font-size: 0.75rem;
-    border-radius: 16px;
+    padding: 0;
+    font-size: 1rem;
+    border-radius: 50%;
   }
   .quick-pagination .page-numbers {
     gap: 4px;
@@ -2738,15 +2739,15 @@ html[data-theme="light"] .gate-theme-btn:hover {
   display: none;
 }
 .page-btn {
+  width: 36px;
   min-width: 36px;
-  width: auto;
   height: 36px;
-  padding: 0 14px;
-  border-radius: 18px;
+  padding: 0;
+  border-radius: 50%;
   border: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.06);
   color: var(--text);
-  font-size: 0.85rem;
+  font-size: 1.2rem;
   cursor: pointer;
   display: grid;
   place-items: center;
