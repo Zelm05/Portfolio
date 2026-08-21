@@ -1059,10 +1059,6 @@ body.nav-hide-mode .side-nav.nav-hidden {
   #gameToggles .switch-row[data-game-id="runner"] {
     display: none !important;
   }
-  /* 隐藏重置配置按钮 */
-  #resetPrefsBtn {
-    display: none !important;
-  }
 
   /* ===== 手机端欢迎页优化 ===== */
   .gate-card {

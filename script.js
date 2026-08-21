@@ -1885,11 +1885,11 @@ function startMinesweeper(stage, msg) {
     const ROWS = cfg.rows, COLS = cfg.cols, MINES = cfg.mines;
     // 手机端根据屏幕宽度动态调整格子大小
     const isMobile = window.innerWidth <= 640;
-    const maxBoardWidth = isMobile ? window.innerWidth - 48 : 600;
+    const maxBoardWidth = isMobile ? window.innerWidth - 64 : 600;
     let cellSize = ROWS <= 9 ? 32 : ROWS <= 12 ? 28 : 24;
     if (isMobile) {
       cellSize = Math.min(cellSize, Math.floor(maxBoardWidth / COLS));
-      cellSize = Math.max(cellSize, 16);
+      cellSize = Math.max(cellSize, 14);
     }
     stage.innerHTML = '<div class="ms-info">💣 扫雷 · ' + cfg.label + ' · 左键翻开 · 右键标记 · 剩余: <span class="ms-left">' + MINES + '</span></div><div class="ms-board-wrap"><div class="ms-board" style="grid-template-columns: repeat(' + COLS + ', ' + cellSize + 'px)"></div></div><button class="ms-restart-btn" type="button">🔄 重新选择难度</button>';
     const board = stage.querySelector('.ms-board');
@@ -2428,11 +2428,6 @@ document.getElementById('resetQuickBtn').addEventListener('click', () => {
   if (!confirm(t('resetQuickConfirm'))) return;
   localStorage.removeItem(LS_QUICK); quickLinks = loadQuick();
   renderQuickFilters(); renderQuick();
-});
-document.getElementById('resetResBtn').addEventListener('click', () => {
-  if (!confirm(t('resetResConfirm'))) return;
-  localStorage.removeItem(LS_RES); resources = loadResources();
-  renderFilters(); renderResources();
 });
 document.getElementById('exportCfgBtn').addEventListener('click', () => {
   const cfg = {
