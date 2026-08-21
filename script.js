@@ -676,15 +676,18 @@ function renderQuickPagination(totalPages) {
   prev.disabled = curPage <= 1;
   next.disabled = curPage >= totalPages;
 }
-document.getElementById('quickPrev').addEventListener('click', () => {
+document.getElementById('quickPrev').addEventListener('click', (e) => {
+  e.preventDefault();
   const p = getQuickPage();
   if (p > 1) { setQuickPage(p - 1); renderQuick(); }
 });
-document.getElementById('quickNext').addEventListener('click', () => {
+document.getElementById('quickNext').addEventListener('click', (e) => {
+  e.preventDefault();
   setQuickPage(getQuickPage() + 1);
   renderQuick();
 });
 document.getElementById('quickPageNumbers').addEventListener('click', (e) => {
+  e.preventDefault();
   const btn = e.target.closest('.page-num');
   if (!btn) return;
   setQuickPage(parseInt(btn.dataset.page, 10));
@@ -1886,7 +1889,14 @@ function startMinesweeper(stage, msg) {
   function initGame(diffKey) {
     const cfg = DIFFICULTIES[diffKey];
     const ROWS = cfg.rows, COLS = cfg.cols, MINES = cfg.mines;
-    const cellSize = ROWS <= 9 ? 32 : ROWS <= 12 ? 28 : 24;
+    // 手机端根据屏幕宽度动态调整格子大小
+    const isMobile = window.innerWidth <= 640;
+    const maxBoardWidth = isMobile ? window.innerWidth - 48 : 600;
+    let cellSize = ROWS <= 9 ? 32 : ROWS <= 12 ? 28 : 24;
+    if (isMobile) {
+      cellSize = Math.min(cellSize, Math.floor(maxBoardWidth / COLS));
+      cellSize = Math.max(cellSize, 16);
+    }
     stage.innerHTML = '<div class="ms-info">💣 扫雷 · ' + cfg.label + ' · 左键翻开 · 右键标记 · 剩余: <span class="ms-left">' + MINES + '</span></div><div class="ms-board" style="grid-template-columns: repeat(' + COLS + ', ' + cellSize + 'px)"></div><button class="ms-restart-btn" type="button">🔄 重新选择难度</button>';
     const board = stage.querySelector('.ms-board');
     const leftEl = stage.querySelector('.ms-left');
