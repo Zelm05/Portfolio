@@ -572,7 +572,9 @@ function renderQuickFilters() {
 const quickSearch = document.getElementById('quickSearch');
 const quickEmpty = document.getElementById('quickEmpty');
 let quickKeyword = '';
-const QUICK_PAGE_SIZE = 8;
+function getQuickPageSize() {
+  return window.innerWidth <= 640 ? 3 : 8;
+}
 let quickPages = {};
 function getQuickPage() { return quickPages[quickGroup] || 1; }
 function setQuickPage(p) { quickPages[quickGroup] = p; }
@@ -598,13 +600,14 @@ function renderQuick() {
     if (pg) pg.hidden = true;
     return;
   }
-  const totalPages = Math.ceil(list.length / QUICK_PAGE_SIZE);
+  const pageSize = getQuickPageSize();
+  const totalPages = Math.ceil(list.length / pageSize);
   let curPage = getQuickPage();
   if (curPage > totalPages) curPage = totalPages;
   if (curPage < 1) curPage = 1;
   setQuickPage(curPage);
-  const startIdx = (curPage - 1) * QUICK_PAGE_SIZE;
-  const pageList = list.slice(startIdx, startIdx + QUICK_PAGE_SIZE);
+  const startIdx = (curPage - 1) * pageSize;
+  const pageList = list.slice(startIdx, startIdx + pageSize);
   pageList.forEach(q => {
     const d = I18N[settings.lang] || I18N.zh;
     const nameMap = d.quickLinkNames || {};
@@ -689,6 +692,16 @@ if (quickSearch) {
     renderQuick();
   });
 }
+
+// 窗口大小变化时重新渲染快捷网页（手机/桌面每页数量不同）
+let quickResizeTimer = null;
+window.addEventListener('resize', () => {
+  if (quickResizeTimer) clearTimeout(quickResizeTimer);
+  quickResizeTimer = setTimeout(() => {
+    setQuickPage(1);
+    renderQuick();
+  }, 300);
+});
 
 /* ===== 快捷网页详情弹窗（风格对齐资源详情） ===== */
 const qdOverlay = document.getElementById('quickDetailOverlay');
