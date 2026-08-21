@@ -243,11 +243,11 @@
         <div class="music-confirm-icon">🎵</div>
         <div class="music-confirm-text">
           <h3 class="music-confirm-title" data-i18n="musicConfirmTitle">选择一首歌曲</h3>
-          <p class="music-confirm-desc" data-i18n="musicConfirmDesc">点击歌曲即可播放，或选择暂不播放</p>
+          <p class="music-confirm-desc" data-i18n="musicConfirmDesc">⏳ 首次加载可能需要一点时间，请稍候...</p>
         </div>
       </div>
       <div class="music-confirm-list" id="musicConfirmList"></div>
-      <p class="music-loading-hint" data-i18n="musicLoadingHint">⏳ 音乐加载可能需要一点时间，请稍候...</p>
+      <p class="music-loading-hint" data-i18n="musicLoadingHint">如果不需要选歌弹窗，可在设置关闭</p>
       <div class="music-confirm-buttons">
         <button class="music-confirm-btn music-confirm-no" id="musicConfirmNo" data-i18n="musicConfirmNo">暂不播放</button>
       </div>
@@ -631,7 +631,17 @@
   <!-- 音乐播放器 -->
   <div class="music-player glass" id="musicPlayer">
     <div class="disc" id="disc">
+      <div class="disc-cover" id="discCover">♪</div>
       <div class="disc-hole"></div>
+    </div>
+    <div class="music-main-info">
+      <div class="music-main-title" id="musicMainTitle" data-i18n="musicNotPlaying">未播放</div>
+      <div class="music-main-artist" id="musicMainArtist">-</div>
+      <div class="music-main-progress">
+        <span class="music-main-time" id="musicMainCurTime">0:00</span>
+        <div class="music-main-bar" id="musicMainBar"><div class="music-main-bar-fill" id="musicMainBarFill"></div></div>
+        <span class="music-main-time" id="musicMainDurTime">0:00</span>
+      </div>
     </div>
   </div>
 

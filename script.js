@@ -68,9 +68,9 @@ const I18N = {
     back: '返回',
     musicList: '音乐列表',
     musicConfirmTitle: '选择一首歌曲',
-    musicConfirmDesc: '点击歌曲即可播放，或选择暂不播放',
+    musicConfirmDesc: '⏳ 首次加载可能需要一点时间，请稍候...',
     musicConfirmNo: '暂不播放',
-    musicLoadingHint: '⏳ 音乐加载可能需要一点时间，请稍候...',
+    musicLoadingHint: '如果不需要选歌弹窗，可在设置关闭',
     qqNumber: 'QQ号',
     douyinAccount: '抖音号',
     scanToAdd: '扫码添加好友',
@@ -401,9 +401,9 @@ const I18N = {
     back: 'Back',
     musicList: 'Music List',
     musicConfirmTitle: 'Select a Song',
-    musicConfirmDesc: 'Click a song to play, or choose not to play',
+    musicConfirmDesc: '⏳ First load may take a moment, please wait...',
     musicConfirmNo: 'Not Now',
-    musicLoadingHint: '⏳ Music may take a moment to load, please wait...',
+    musicLoadingHint: 'If you don\'t need the song popup, turn it off in settings',
     qqNumber: 'QQ Number',
     douyinAccount: 'Douyin ID',
     scanToAdd: 'Scan to add friend',
@@ -1219,7 +1219,14 @@ const MUSIC_LIST = [
 
 const audio = document.getElementById('bgAudio');
 const disc = document.getElementById('disc');
+const discCover = document.getElementById('discCover');
 const musicPlayer = document.getElementById('musicPlayer');
+const musicMainTitle = document.getElementById('musicMainTitle');
+const musicMainArtist = document.getElementById('musicMainArtist');
+const musicMainCurTime = document.getElementById('musicMainCurTime');
+const musicMainDurTime = document.getElementById('musicMainDurTime');
+const musicMainBar = document.getElementById('musicMainBar');
+const musicMainBarFill = document.getElementById('musicMainBarFill');
 const musicPopup = document.getElementById('musicPopup');
 const musicPopupClose = document.getElementById('musicPopupClose');
 const musicListEl = document.getElementById('musicList');
@@ -1239,16 +1246,19 @@ const musicVolumeIcon = document.getElementById('musicVolumeIcon');
 let currentMusicIndex = -1;
 let isPlaying = false;
 let isLoading = false;
+let loadProgress = 0;
+let loadError = null;
 let lastVolume = 0.7;
 
 audio.volume = settings.volume || 0.7;
 if (musicVolumeBar) musicVolumeBar.value = Math.round(audio.volume * 100);
 if (musicVolumeVal) musicVolumeVal.textContent = Math.round(audio.volume * 100) + '%';
 
-// 页面加载后预加载第一首歌（后台缓存，不自动播放）
+// 页面加载后只设置音频源，不主动预加载（避免大文件影响页面加载速度）
+// 用户点击播放时才会真正加载
 if (MUSIC_LIST.length > 0) {
   audio.src = MUSIC_LIST[0].url;
-  audio.load();
+  audio.preload = 'metadata';
 }
 
 function formatTime(sec) {
@@ -1297,24 +1307,32 @@ function playMusic(index) {
   currentMusicIndex = index;
   const m = MUSIC_LIST[index];
   isLoading = true;
+  loadProgress = 0;
+  loadError = null;
   updateNowPlaying();
   updateDiscStyle();
   renderMusicList();
   audio.src = m.url;
   audio.load();
-  audio.play().then(() => {
-    isPlaying = true;
-    isLoading = false;
-    updateNowPlaying();
-    updateDiscStyle();
-    renderMusicList();
-  }).catch(() => {
-    isPlaying = false;
-    isLoading = false;
-    updateNowPlaying();
-    updateDiscStyle();
-    renderMusicList();
-  });
+  const playPromise = audio.play();
+  if (playPromise) {
+    playPromise.then(() => {
+      isPlaying = true;
+      isLoading = false;
+      loadError = null;
+      updateNowPlaying();
+      updateDiscStyle();
+      renderMusicList();
+    }).catch((err) => {
+      isPlaying = false;
+      isLoading = false;
+      loadError = err && err.message ? err.message : '播放失败，请检查网络或稍后重试';
+      updateNowPlaying();
+      updateDiscStyle();
+      renderMusicList();
+      console.warn('音乐播放失败:', err);
+    });
+  }
 }
 
 // 音频加载事件
@@ -1325,14 +1343,31 @@ audio.addEventListener('waiting', () => {
 });
 audio.addEventListener('canplay', () => {
   isLoading = false;
+  loadError = null;
   updateNowPlaying();
   updateDiscStyle();
 });
-audio.addEventListener('error', () => {
+audio.addEventListener('progress', () => {
+  if (audio.buffered.length > 0 && audio.duration) {
+    loadProgress = (audio.buffered.end(audio.buffered.length - 1) / audio.duration) * 100;
+    updateNowPlaying();
+  }
+});
+audio.addEventListener('error', (e) => {
   isLoading = false;
   isPlaying = false;
+  const errCode = audio.error ? audio.error.code : 0;
+  const errMsg = {
+    1: '加载被中止',
+    2: '网络错误，无法加载音频',
+    3: '音频解码失败',
+    4: '音频文件不存在或格式不支持'
+  }[errCode] || '加载失败，请检查网络连接';
+  loadError = errMsg;
   updateNowPlaying();
   updateDiscStyle();
+  renderMusicList();
+  console.warn('音频加载错误:', errCode, errMsg);
 });
 
 function togglePlay() {
@@ -1341,7 +1376,18 @@ function togglePlay() {
     return;
   }
   if (audio.paused) {
-    audio.play().then(() => { isPlaying = true; updateNowPlaying(); renderMusicList(); }).catch(() => {});
+    audio.play().then(() => {
+      isPlaying = true;
+      loadError = null;
+      updateNowPlaying();
+      renderMusicList();
+    }).catch((err) => {
+      isPlaying = false;
+      loadError = err && err.message ? err.message : '播放失败，点击重试';
+      updateNowPlaying();
+      renderMusicList();
+      console.warn('播放失败:', err);
+    });
   } else {
     audio.pause();
     isPlaying = false;
@@ -1367,19 +1413,35 @@ function updateNowPlaying() {
   if (currentMusicIndex === -1) {
     if (musicNpTitle) musicNpTitle.textContent = t.musicNotPlaying;
     if (musicNpArtist) musicNpArtist.textContent = '-';
+    if (musicMainTitle) { musicMainTitle.textContent = t.musicNotPlaying; musicMainTitle.classList.remove('marquee'); }
+    if (musicMainArtist) musicMainArtist.textContent = '-';
     if (musicPlayBtn) musicPlayBtn.textContent = '▶';
+    if (discCover) discCover.textContent = '♪';
     disc.classList.remove('playing');
     disc.classList.remove('loading');
     if (musicNpDisc) musicNpDisc.classList.remove('playing');
     return;
   }
   const m = MUSIC_LIST[currentMusicIndex];
-  if (musicNpTitle) musicNpTitle.textContent = isLoading ? t.musicLoading : m.name;
-  if (musicNpArtist) musicNpArtist.textContent = isLoading ? t.musicBuffering : m.artist;
+  const statusText = isLoading ? (loadProgress > 0 ? `加载中 ${Math.round(loadProgress)}%` : t.musicLoading) : (loadError || m.name);
+  if (musicNpTitle) musicNpTitle.textContent = statusText;
+  if (musicNpArtist) musicNpArtist.textContent = isLoading ? t.musicBuffering : (loadError ? '' : m.artist);
+  if (musicMainTitle) {
+    musicMainTitle.textContent = statusText;
+    if (!isLoading && !loadError && m.name.length > 8) {
+      musicMainTitle.classList.add('marquee');
+      musicMainTitle.innerHTML = m.name + ' · ' + m.name;
+    } else {
+      musicMainTitle.classList.remove('marquee');
+    }
+  }
+  if (musicMainArtist) musicMainArtist.textContent = isLoading ? t.musicBuffering : (loadError ? '点击重试' : m.artist);
   if (musicPlayBtn) musicPlayBtn.textContent = isLoading ? '⏳' : (isPlaying ? '⏸' : '▶');
+  if (discCover) discCover.textContent = isLoading ? '⏳' : (isPlaying ? '⏸' : '▶');
+  disc.style.background = m.discBg;
   disc.classList.toggle('playing', isPlaying && !isLoading);
   disc.classList.toggle('loading', isLoading);
-  if (musicNpDisc) musicNpDisc.classList.toggle('playing', isPlaying && !isLoading);
+  if (musicNpDisc) { musicNpDisc.style.background = m.discBg; musicNpDisc.classList.toggle('playing', isPlaying && !isLoading); }
 }
 
 function setMusicVolume(val) {
@@ -1431,16 +1493,35 @@ audio.addEventListener('timeupdate', () => {
     musicProgressBar.value = (audio.currentTime / audio.duration) * 100;
   }
   if (musicCurTime) musicCurTime.textContent = formatTime(audio.currentTime);
+  if (musicMainCurTime) musicMainCurTime.textContent = formatTime(audio.currentTime);
+  if (musicMainBarFill && audio.duration) {
+    musicMainBarFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+  }
 });
 audio.addEventListener('loadedmetadata', () => {
   if (musicDurTime) musicDurTime.textContent = formatTime(audio.duration);
+  if (musicMainDurTime) musicMainDurTime.textContent = formatTime(audio.duration);
 });
 audio.addEventListener('ended', () => { playNext(); });
 
 disc.addEventListener('click', (e) => {
   e.stopPropagation();
+  if (loadError && currentMusicIndex !== -1) {
+    loadError = null;
+    playMusic(currentMusicIndex);
+    return;
+  }
   toggleMusicPopup();
 });
+if (musicMainBar) {
+  musicMainBar.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!audio.duration) return;
+    const rect = musicMainBar.getBoundingClientRect();
+    const pct = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = pct * audio.duration;
+  });
+}
 if (musicPopupClose) musicPopupClose.addEventListener('click', () => { musicPopup.hidden = true; });
 document.addEventListener('click', (e) => {
   if (musicPopup && !musicPopup.hidden && !musicPopup.contains(e.target) && !musicPlayer.contains(e.target)) {
