@@ -2414,12 +2414,24 @@ body.nav-hide-mode .side-nav.nav-hidden {
 /* ===== 移动端：导航栏改为顶部横条 ===== */
 @media (max-width: 768px) {
   .music-player {
-    top: auto;
+    position: fixed;
+    right: 12px;
     bottom: 80px;
-    right: 0;
+    left: auto;
+    top: auto;
     transform: none;
-    padding: 10px;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     max-width: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  .music-player:hover {
+    padding: 0;
   }
   .music-main-info {
     display: none;
@@ -2427,6 +2439,22 @@ body.nav-hide-mode .side-nav.nav-hidden {
   .disc {
     width: 42px;
     height: 42px;
+  }
+  .disc-cover {
+    width: 16px;
+    height: 16px;
+    font-size: 9px;
+  }
+  .fortune-float {
+    width: 40px !important;
+    height: 40px !important;
+    right: 18px !important;
+    top: auto !important;
+    bottom: 145px !important;
+    left: auto !important;
+    position: fixed !important;
+    font-size: 1.1rem !important;
+    z-index: 160 !important;
   }
   body {
     padding-left: 0;

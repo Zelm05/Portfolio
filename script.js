@@ -77,7 +77,14 @@ const I18N = {
     scanToFollow: '扫码关注',
     musicNotPlaying: '未播放',
     musicLoading: '加载中...',
+    musicLoadingProgress: '加载中 {percent}%',
     musicBuffering: '正在缓冲',
+    musicClickToRetry: '点击重试',
+    musicPlayFailed: '播放失败，请检查网络',
+    musicNetworkError: '网络错误，无法加载音频',
+    musicDecodeError: '音频解码失败',
+    musicNotFound: '音频文件不存在或格式不支持',
+    musicLoadAborted: '加载被中止',
     musicPrev: '上一首',
     musicPlayPause: '播放/暂停',
     musicNext: '下一首',
@@ -410,7 +417,14 @@ const I18N = {
     scanToFollow: 'Scan to follow',
     musicNotPlaying: 'Not Playing',
     musicLoading: 'Loading...',
+    musicLoadingProgress: 'Loading {percent}%',
     musicBuffering: 'Buffering',
+    musicClickToRetry: 'Click to retry',
+    musicPlayFailed: 'Play failed, check network',
+    musicNetworkError: 'Network error, cannot load audio',
+    musicDecodeError: 'Audio decode failed',
+    musicNotFound: 'Audio file not found or unsupported',
+    musicLoadAborted: 'Load aborted',
     musicPrev: 'Previous',
     musicPlayPause: 'Play/Pause',
     musicNext: 'Next',
@@ -1254,11 +1268,10 @@ audio.volume = settings.volume || 0.7;
 if (musicVolumeBar) musicVolumeBar.value = Math.round(audio.volume * 100);
 if (musicVolumeVal) musicVolumeVal.textContent = Math.round(audio.volume * 100) + '%';
 
-// 页面加载后只设置音频源，不主动预加载（避免大文件影响页面加载速度）
-// 用户点击播放时才会真正加载
+// 页面加载后只设置音频源，使用 auto 预加载让浏览器自行决定加载策略
 if (MUSIC_LIST.length > 0) {
   audio.src = MUSIC_LIST[0].url;
-  audio.preload = 'metadata';
+  audio.preload = 'auto';
 }
 
 function formatTime(sec) {
@@ -1312,27 +1325,45 @@ function playMusic(index) {
   updateNowPlaying();
   updateDiscStyle();
   renderMusicList();
+  // 停止当前播放
+  audio.pause();
+  audio.currentTime = 0;
+  // 设置新源，浏览器会自动加载
   audio.src = m.url;
-  audio.load();
-  const playPromise = audio.play();
-  if (playPromise) {
-    playPromise.then(() => {
-      isPlaying = true;
-      isLoading = false;
-      loadError = null;
-      updateNowPlaying();
-      updateDiscStyle();
-      renderMusicList();
-    }).catch((err) => {
-      isPlaying = false;
-      isLoading = false;
-      loadError = err && err.message ? err.message : '播放失败，请检查网络或稍后重试';
-      updateNowPlaying();
-      updateDiscStyle();
-      renderMusicList();
-      console.warn('音乐播放失败:', err);
-    });
-  }
+  // 尝试播放，浏览器会在加载足够数据后自动播放
+  const tryPlay = () => {
+    const playPromise = audio.play();
+    if (playPromise) {
+      playPromise.then(() => {
+        isPlaying = true;
+        isLoading = false;
+        loadError = null;
+        updateNowPlaying();
+        updateDiscStyle();
+        renderMusicList();
+      }).catch((err) => {
+        const t = I18N[settings.lang] || I18N.zh;
+        // 如果是因为需要用户交互，则等待 canplay 后再试
+        if (err && err.name === 'NotAllowedError') {
+          const onCanPlay = () => {
+            audio.removeEventListener('canplay', onCanPlay);
+            audio.play().catch(() => {});
+          };
+          audio.addEventListener('canplay', onCanPlay);
+        } else {
+          isPlaying = false;
+          isLoading = false;
+          loadError = t.musicPlayFailed;
+          updateNowPlaying();
+          updateDiscStyle();
+          renderMusicList();
+          console.warn('音乐播放失败:', err);
+        }
+      });
+    }
+  };
+  // 延迟一点再播放，确保 src 设置生效
+  setTimeout(tryPlay, 50);
 }
 
 // 音频加载事件
@@ -1356,13 +1387,14 @@ audio.addEventListener('progress', () => {
 audio.addEventListener('error', (e) => {
   isLoading = false;
   isPlaying = false;
+  const t = I18N[settings.lang] || I18N.zh;
   const errCode = audio.error ? audio.error.code : 0;
   const errMsg = {
-    1: '加载被中止',
-    2: '网络错误，无法加载音频',
-    3: '音频解码失败',
-    4: '音频文件不存在或格式不支持'
-  }[errCode] || '加载失败，请检查网络连接';
+    1: t.musicLoadAborted,
+    2: t.musicNetworkError,
+    3: t.musicDecodeError,
+    4: t.musicNotFound
+  }[errCode] || t.musicPlayFailed;
   loadError = errMsg;
   updateNowPlaying();
   updateDiscStyle();
@@ -1382,8 +1414,9 @@ function togglePlay() {
       updateNowPlaying();
       renderMusicList();
     }).catch((err) => {
+      const t = I18N[settings.lang] || I18N.zh;
       isPlaying = false;
-      loadError = err && err.message ? err.message : '播放失败，点击重试';
+      loadError = t.musicPlayFailed;
       updateNowPlaying();
       renderMusicList();
       console.warn('播放失败:', err);
@@ -1423,7 +1456,14 @@ function updateNowPlaying() {
     return;
   }
   const m = MUSIC_LIST[currentMusicIndex];
-  const statusText = isLoading ? (loadProgress > 0 ? `加载中 ${Math.round(loadProgress)}%` : t.musicLoading) : (loadError || m.name);
+  let statusText;
+  if (isLoading) {
+    statusText = loadProgress > 0 ? t.musicLoadingProgress.replace('{percent}', Math.round(loadProgress)) : t.musicLoading;
+  } else if (loadError) {
+    statusText = loadError;
+  } else {
+    statusText = m.name;
+  }
   if (musicNpTitle) musicNpTitle.textContent = statusText;
   if (musicNpArtist) musicNpArtist.textContent = isLoading ? t.musicBuffering : (loadError ? '' : m.artist);
   if (musicMainTitle) {
@@ -1435,7 +1475,7 @@ function updateNowPlaying() {
       musicMainTitle.classList.remove('marquee');
     }
   }
-  if (musicMainArtist) musicMainArtist.textContent = isLoading ? t.musicBuffering : (loadError ? '点击重试' : m.artist);
+  if (musicMainArtist) musicMainArtist.textContent = isLoading ? t.musicBuffering : (loadError ? t.musicClickToRetry : m.artist);
   if (musicPlayBtn) musicPlayBtn.textContent = isLoading ? '⏳' : (isPlaying ? '⏸' : '▶');
   if (discCover) discCover.textContent = isLoading ? '⏳' : (isPlaying ? '⏸' : '▶');
   disc.style.background = m.discBg;
@@ -1506,11 +1546,7 @@ audio.addEventListener('ended', () => { playNext(); });
 
 disc.addEventListener('click', (e) => {
   e.stopPropagation();
-  if (loadError && currentMusicIndex !== -1) {
-    loadError = null;
-    playMusic(currentMusicIndex);
-    return;
-  }
+  // 总是打开音乐弹窗，在弹窗中显示错误和重试选项
   toggleMusicPopup();
 });
 if (musicMainBar) {
