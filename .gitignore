@@ -9,3 +9,6 @@ Thumbs.db
 
 # 静态资源（用户自行更新）
 assets/
+# 但音乐文件需要提交，否则网页无法播放
+!assets/music/
+!assets/music/*.mp3
