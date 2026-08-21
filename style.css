@@ -4034,6 +4034,12 @@ html[data-theme="light"] .specular-btn:hover {
  * 这些浏览器对全屏 filter:blur() 与 backdrop-filter 支持不佳，
  * 经常出现整屏黑屏或内容不可见，故直接关闭滤镜，改用纯色/渐变兜底。
  */
+/* 统一降级：is-legacy 浏览器全局关闭玻璃滤镜，彻底避免合成层黑屏 */
+html.is-legacy * {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+html.is-legacy #gate::before,
 html.is-qq #gate::before,
 html.is-wechat #gate::before,
 html.is-x5 #gate::before,
@@ -4041,6 +4047,7 @@ html.is-mobile.no-webgl2 #gate::before {
   filter: none;
   background: radial-gradient(circle at 50% 30%, rgba(8, 36, 30, 0.95), rgba(2, 10, 8, 1));
 }
+html[data-theme="light"].is-legacy #gate::before,
 html[data-theme="light"].is-qq #gate::before,
 html[data-theme="light"].is-wechat #gate::before,
 html[data-theme="light"].is-x5 #gate::before,

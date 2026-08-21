@@ -10,12 +10,13 @@
     body { background-color: #061814; }
   </style>
   <script>
-    /* 早期环境探测：为 QQ/微信/X5 内核及无 WebGL2 设备添加降级类名 */
+    /* 早期环境探测：QQ/微信/X5/IE 内核及不支持 WebGL2/backdrop-filter 的浏览器统一降级 */
     (function () {
       var ua = navigator.userAgent.toLowerCase();
       var isQQ = /qqbrowser|mqqbrowser|qbwebview/.test(ua);
       var isWeChat = /micromessenger/.test(ua);
-      var isX5 = /tbs|x5/.test(ua);
+      var isX5 = /tbs|x5core|x5/.test(ua);
+      var isIE = /trident|msie/.test(ua);
       var isMobile = /mobile|android|iphone|ipad|ipod/.test(ua);
       function hasWebGL2() {
         try {
@@ -23,11 +24,24 @@
           return !!(window.WebGL2RenderingContext && c.getContext('webgl2'));
         } catch (e) { return false; }
       }
+      function hasBackdrop() {
+        try {
+          var s = document.documentElement.style;
+          return ('backdropFilter' in s) ||
+                 (window.CSS && CSS.supports &&
+                   (CSS.supports('backdrop-filter', 'blur(2px)') ||
+                    CSS.supports('-webkit-backdrop-filter', 'blur(2px)')));
+        } catch (e) { return false; }
+      }
       var html = document.documentElement;
+      /* 统一降级标记：命中任一旧内核或能力缺失即进入纯色降级模式，彻底避免黑屏 */
+      var legacy = isQQ || isWeChat || isX5 || isIE || !hasWebGL2() || !hasBackdrop();
+      if (legacy) html.classList.add('is-legacy');
       if (isMobile) html.classList.add('is-mobile');
       if (isQQ) html.classList.add('is-qq');
       if (isWeChat) html.classList.add('is-wechat');
       if (isX5) html.classList.add('is-x5');
+      if (isIE) html.classList.add('is-ie');
       if (!hasWebGL2()) html.classList.add('no-webgl2');
     })();
   </script>
