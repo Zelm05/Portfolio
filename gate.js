@@ -8,13 +8,18 @@
 
   try {
     if (sessionStorage.getItem('zelm_verified') === '1') {
-      document.documentElement.classList.add('site-open');
-      gate.hidden = true;
+      window.location.href = 'index.html';
       return;
     }
   } catch (e) { /* sessionStorage 不可用时忽略 */ }
 
   var verified = false;
+
+  // 已验证则直接跳转
+  if (sessionStorage.getItem('zelm_verified') === '1') {
+    window.location.href = 'index.html';
+    return;
+  }
 
   function pass() {
     if (verified || gate.hidden) return;
@@ -22,11 +27,7 @@
     gate.classList.add('gate-leaving');
     try { sessionStorage.setItem('zelm_verified', '1'); } catch (e) { /* 忽略 */ }
     setTimeout(function () {
-      document.documentElement.classList.add('site-open');
-    }, 180);
-    setTimeout(function () {
-      gate.hidden = true;
-      document.body.style.overflow = '';
+      window.location.href = 'index.html';
     }, 780);
   }
 
