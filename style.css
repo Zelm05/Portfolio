@@ -3110,7 +3110,28 @@ html[data-theme="light"] .gate-theme-btn:hover {
 /* 扫雷游戏 */
 .ms-info { color: #8b94a3; font-size: 13px; margin-bottom: 8px; }
 .ms-info span { color: #4ff0d0; font-weight: 600; }
-.ms-board { display: grid; gap: 2px; justify-content: center; }
+.ms-board-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+.ms-board-wrap::-webkit-scrollbar {
+  height: 6px;
+}
+.ms-board-wrap::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+.ms-board-wrap::-webkit-scrollbar-thumb {
+  background: rgba(79, 240, 208, 0.3);
+  border-radius: 3px;
+}
+.ms-board-wrap::-webkit-scrollbar-thumb:hover {
+  background: rgba(79, 240, 208, 0.5);
+}
+.ms-board { display: inline-grid; gap: 2px; }
 .ms-cell {
   border: 1px solid rgba(79, 240, 208, 0.3);
   background: rgba(79, 240, 208, 0.08);

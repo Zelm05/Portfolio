@@ -1891,7 +1891,7 @@ function startMinesweeper(stage, msg) {
       cellSize = Math.min(cellSize, Math.floor(maxBoardWidth / COLS));
       cellSize = Math.max(cellSize, 16);
     }
-    stage.innerHTML = '<div class="ms-info">💣 扫雷 · ' + cfg.label + ' · 左键翻开 · 右键标记 · 剩余: <span class="ms-left">' + MINES + '</span></div><div class="ms-board" style="grid-template-columns: repeat(' + COLS + ', ' + cellSize + 'px)"></div><button class="ms-restart-btn" type="button">🔄 重新选择难度</button>';
+    stage.innerHTML = '<div class="ms-info">💣 扫雷 · ' + cfg.label + ' · 左键翻开 · 右键标记 · 剩余: <span class="ms-left">' + MINES + '</span></div><div class="ms-board-wrap"><div class="ms-board" style="grid-template-columns: repeat(' + COLS + ', ' + cellSize + 'px)"></div></div><button class="ms-restart-btn" type="button">🔄 重新选择难度</button>';
     const board = stage.querySelector('.ms-board');
     const leftEl = stage.querySelector('.ms-left');
     const restartBtn = stage.querySelector('.ms-restart-btn');
